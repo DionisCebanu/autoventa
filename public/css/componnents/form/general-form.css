@@ -1,0 +1,107 @@
+:root {
+    --label-color: #6b7384;
+    --general-form-bg: #f5f5f5;
+}
+/* Style général pour le formulaire */
+.form {
+    width: 90%;
+    background-color: var(--general-form-bg);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Style pour le contrôle de formulaire */
+.form-control {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+/* Style pour les étiquettes (labels) */
+.form-control label {
+    font-weight: bold;
+    color: var(--label-color);
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+/* Style pour les champs input, textarea et select */
+.form-control input,
+.form-control textarea,
+.form-control select {
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    font-size: 1em;
+    color: #555;
+    background-color: #fff;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+/* Effet de focus pour les champs input, textarea et select */
+.form-control input[type="text"]:focus,
+.form-control textarea:focus,
+.form-control select:focus {
+    border-color: var(--accent-color);
+}
+
+/* Style spécifique pour le textarea */
+.form-control textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+/* Style pour le menu déroulant (select) */
+.form-control select {
+    appearance: none; /* Supprime le style par défaut du select */
+    background-color: #fff;
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%238a5b25" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    padding-right: 35px;
+    cursor: pointer;
+}
+
+/* Style pour le bouton */
+.form button {
+    width: 100%;
+}
+
+
+/*error of the field*/
+.error_field {
+    margin-top: 10px;
+    padding: 10px;
+    color: white;
+    font-weight: bolder;
+    background-color: var(--error-color);
+    border-radius: 5px;
+}
+
+/*form footer*/
+.form_footer {
+    background-color: var(--general-form-bg);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.form_footer {
+    font-weight: bold;
+    color: var(--label-color);
+}
+
+.form_footer a {
+    text-decoration: none;
+    color: #555;
+}
+
+/* Grands écrans (ordinateurs de bureau) */
+
+@media (min-width: 700px) {
+    .form {
+        width: 450px;
+        padding: 30px;
+    }
+}

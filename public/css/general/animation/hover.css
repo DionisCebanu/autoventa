@@ -1,0 +1,13 @@
+:root {
+    --scale-main: 0.9;
+    --transition-all: all 1s;
+}
+
+a {
+    transition: var(--transition-all);
+}
+
+a:hover {
+    scale: var(--scale-main);
+    color: orange;    
+}

@@ -1,0 +1,383 @@
+:root { 
+    --nav-bg: white;
+    --links--nav--size: 20px;
+    --link--accent-color: rgb(73, 28, 171);
+    --primary-link-color-nav: rgb(80, 80, 80);
+    --dropdown--menu__color: white;
+    --nav-box-shadow: 0 4px 2px -2px #e1e1e1;
+   
+}
+
+/*body of nav*/
+nav {
+    padding: 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: var(--nav-box-shadow);
+    margin-bottom: 10px;
+
+    background: var(--nav-bg);
+}
+
+
+/*Logo*/
+.logo {
+    display: flex;
+    width: 140px;
+    height: 140px;
+    gap: 10px;
+    align-items: center;
+
+    animation: fadeIn 1s ease-in-out forwards; /* Duration and easing function */
+    opacity: 0;
+}
+
+.logo h2{
+    width: 50%;
+    color: var(--primary-link-color-nav);
+}
+
+.logo-img img{
+    border-radius: 50%;
+    opacity: 80%;
+}
+
+/*page links*/
+.page-links {
+    display: flex;
+    gap: 5px;
+
+    animation: fadeIn 1.5s ease-in-out forwards; /* Duration and easing function */
+    opacity: 0;
+}
+
+.nav-btn.active-link {
+    color: orange;
+}
+
+
+a.nav-btn.active-nav-btn {
+    color: var(--primary-link);
+}
+
+.page-links a {
+    color: var(--primary-link-color-nav);
+    padding: 10px;
+    cursor: pointer;
+    font-size: var(--links--nav--size);
+}
+
+/*button contact*/
+.contact-us {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    animation: fadeIn 3s ease-in-out forwards; /* Duration and easing function */
+    opacity: 0;
+}
+
+.contact-btn {
+    padding: 20px;
+    background-color: var(--primary-link);
+    color: var(--primary-link-color-nav);
+    font-size: var(--links--nav--size);
+    font-weight: bold;
+    border-radius: 10px;
+}
+
+/*greet user*/
+.greet-user {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: var(--links--nav--size);
+    color: var(--primary-link-color-nav);
+}
+
+.greet-user span {
+    font-style: italic;
+    color: var(--link--accent-color);
+}
+
+.greet-user-img {
+    display: flex;
+    width: 100px;
+    height: 100px;
+}
+
+.greet-user-img img{
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+/*greet-user mobile*/
+.greet-user-mobile {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 10px;
+}
+
+.greet-user-mobile span,
+.greet-user-mobile p {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.greet-user-mobile .greet-user-img {
+    width: 50px;
+    height: 50px;
+}
+
+.greet-user-mobile span {
+    color: var(--link--accent-color);
+}
+
+/*animation*/
+.greet-user:hover,
+.logo h2:hover,
+.logo-img img:hover,
+.contact-btn:hover,
+.page-links a:hover {
+    transition: all 1s;
+}
+
+.greet-user:hover,
+.logo h2:hover,
+.logo-img img:hover,
+.contact-btn:hover,
+.page-links a:hover {
+    scale: 0.9;
+}
+
+.logo h2:hover,
+.page-links a:hover {
+    scale: 0.9;
+    color: orange;
+}
+
+/*dropdown*/
+/* Dropdown Container */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown Trigger (a tag styled as a button) */
+
+
+
+.dropdown-btn {
+    background-color: var(--primary-link);
+    color: white;
+    padding: 14px 20px;
+    font-size: 16px;
+    text-decoration: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: inline-block;
+}
+
+/* Style for the dropdown content (hidden by default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: var(--general-color-forms);
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+/* Style for links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Hover effect for dropdown links */
+
+a.dropdown-btn:hover {
+    color: white;
+}
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+/* Show the dropdown content on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Change background color on hover for the dropdown trigger */
+.dropdown:hover .dropdown-btn {
+    background-color: orange;
+}
+
+
+
+
+/*---------------------NAVIGATION RESPONSIVE MOBILE-------------------*/
+
+.visible-menu {
+    display: block;
+}
+.invisible-menu {
+    display: none;
+}
+
+.toggle_btn img {
+    width: 40px;
+    height: 40px;
+}
+
+.toggle_btn {
+    cursor: pointer;
+    display: none;
+}
+
+/*btn-toggle-hamburger*/
+
+.hamburger {
+    display: none;
+}
+
+.hamburger .line {
+    width: 25px;
+    height: 1px;
+    background-color: #424242;
+    display: block;
+    margin: 7px auto;
+    transition: all 0.3s ease-in-out;
+  }
+  .hamburger-active {
+    transition: all 0.3s ease-in-out;
+    transition-delay: 0.6s;
+    transform: rotate(45deg);
+  }
+  
+  .hamburger-active .line:nth-child(2) {
+    width: 0px;
+  }
+  
+  .hamburger-active .line:nth-child(1),
+  .hamburger-active .line:nth-child(3) {
+    transition-delay: 0.3s;
+  }
+  
+  .hamburger-active .line:nth-child(1) {
+    transform: translateY(12px);
+  }
+  
+  .hamburger-active .line:nth-child(3) {
+    transform: translateY(-5px) rotate(90deg);
+  }
+
+
+/*dropdown-menu*/
+/*dropdown_menu*/
+
+.dropdown_menu {
+    opacity: 0;
+    visibility: hidden;
+    margin-top: 20px;
+    position: absolute;
+    padding: 20px;
+    right: 0px;
+    top: 100px;
+    width: 300px;
+    background: var(--dropdown--menu__color);
+    z-index: 5; 
+    border-radius: 0px 0px 20px 20px;
+    transition: opacity 1s, visibility 1s;
+}
+
+/*colors*/
+.dropdown_menu li a {
+    color: var(--general-p-color);
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/*When we click on the toggle btn we add the class to display the menu (mobile)*/
+.dropdown_menu.close {
+    display: none;
+}
+.dropdown_menu.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+.dropdown_menu li {
+    padding: 10px;
+    color: var(--primary-link-color-nav);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dropdown_menu .action_btn {
+    width: 50%;
+    background-color: var(--btn-primary);
+    padding: 10px;
+    border-radius: 10px;
+    color: white;
+    text-align: center;
+}
+
+
+/*Navigation pour les telephones*/
+
+@media (max-width: 1000px) {
+    /*btn-hamburger*/
+    .hamburger {
+        display: block;
+    }
+    /*logo*/
+
+    nav {
+        justify-content: space-between;
+    }
+    .logo__title {
+        display: block;
+        width: 50%;
+    }
+    /*menu content*/
+    .greet-user,
+    .contact-us .btn,
+    .page-links {
+        display: none;
+    }
+
+    .toggle_btn {
+        display: block;
+    }
+    /*dropdown-connection btns*/
+
+     .dropdown_menu .action_btn {
+        display: block;
+        width: 100%;
+        padding: 15px;
+        margin-bottom: 10px;
+    } 
+}
+
+@media (max-width: 550px) {
+
+    .dropdown_menu {
+       margin-top: 0;
+       left: 0px;
+       right: 0px;
+       top: 140px;
+       height: 100dvh;
+       width: unset;
+   } 
+
+}

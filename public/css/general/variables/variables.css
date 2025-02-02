@@ -1,0 +1,10 @@
+:root {
+    --main-bg-color: linear-gradient(125deg, #ffffff 25%, hsl(0deg 0% 100%) 50%, #b6c3d7 75%, #d5e6f1 30%);
+    --main-footer-color: linear-gradient(to top, #152531, #375f81, #3a86c9);
+    --small-section-bg: rgb(196 204 209);
+}
+
+/*text colors*/
+:root{
+    --main-acent-color: #daa071;
+}

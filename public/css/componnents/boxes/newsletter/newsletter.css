@@ -1,0 +1,37 @@
+/* Newsletter Section */
+.footer--newsletter h3 {
+    font-size: 14px;
+    margin: 10px 0 15px;
+    line-height: 1.5;
+  }
+  
+  .footer--newsletter {
+    display: flex;
+    flex-direction: column;
+    
+    gap: 10px;
+  }
+  
+  .newsletter-input {
+    flex: 1;
+    padding: 10px;
+    border-radius: 30px;
+    border: none;
+    outline: none;
+  }
+  
+  .btn.newsletter-btn {
+    padding: 10px 20px;
+    background: var(--footer-accent) !important;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .newsletter-btn i {
+    color: white;
+  }

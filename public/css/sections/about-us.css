@@ -1,0 +1,54 @@
+.about-us {
+    display: flex;
+    align-items: center;
+    height: 30dvh;
+}
+
+/*the sections dimensions*/
+.about-us_title{
+    width: 40%;
+    font-size: 50px;
+}
+
+.about-us_description {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/*the button*/
+.about-us_description .btn {
+    width: 50%;
+}
+
+/*Responsive*/
+@media (min-width: 1500px) {
+    .about-us {
+        width: 80%;
+        margin: 0 auto;
+        height: 50dvh;
+    }
+}
+
+@media (max-width: 1000px) {
+    .about-us_title,
+    .about-us_description {
+        width: 100%;
+        text-align: center;
+    }
+
+    .about-us {
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 0 10px;
+        height: 45dvh;
+    }
+
+    .about-us_description .btn{
+        margin: 0 auto;
+        width: 90%;
+    }
+}

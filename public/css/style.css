@@ -1,0 +1,35 @@
+/*components*/
+@import url(componnents/components.css);
+@import url(admin-interface/admin-interface.css);
+
+/*sections*/
+@import url(sections/sections.css);
+
+/*general*/
+@import url(general/general.css);
+
+
+*{
+    padding: 0;
+    margin: 0;
+}
+
+:root {
+    --primary-link: rgb(218, 160, 113);
+}
+body {
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    width: 100%;
+}
+
+.structure {
+    width: 80%;
+}
+

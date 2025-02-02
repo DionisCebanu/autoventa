@@ -1,0 +1,57 @@
+/* Section Styling */
+
+
+/* Individual Article Styling */
+.author-article {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 100%;
+    padding: 20px;
+}
+
+/* Image Styling */
+.author-article picture img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 2px solid #ddd;
+    margin-right: 15px;
+}
+
+/* Attribution Description Styling */
+.attribution-description {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.attribution-description h3 {
+    font-size: 16px;
+    margin: 0;
+    color: #333;
+    font-weight: bold;
+}
+
+.attribution-description h3 span {
+    font-weight: normal;
+    color: #555;
+}
+
+.attribution-description a {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+.attribution-description a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}

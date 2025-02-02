@@ -1,0 +1,19 @@
+@import url(location-section.css);
+@import url(reservation-confirmation.css);
+@import url(search-car-section.css);
+@import url(why-us-section.css);
+@import url(gallery-section.css);
+@import url(brand-type-section.css);
+@import url(latest-arrivals-section.css);
+@import url(header-img.css);
+@import url(about-us.css);
+@import url(attributions.css);
+
+
+/*SLIDERS*/
+@import url(sliders/slider.css);
+
+
+section {
+    padding: 30px 0px !important;
+}

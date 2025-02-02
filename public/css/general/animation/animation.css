@@ -1,0 +1,75 @@
+@import url(hover.css);
+@import url(sliders/sliders.css);
+@import url(effects/effects.css);
+@import url(onscroll/onscroll.css);
+@import url(loader/loader.css);
+
+
+
+/* Define keyframes for the left and right rotation */
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    25% { 
+        transform: rotate(-45deg); /* Rotate left */
+    }
+    50% { 
+        transform: rotate(25deg); /* Return to the original position */
+    }
+    100% { 
+        transform: rotate(0deg); /* Return to the original position */
+    }
+}
+
+
+.hi-img img {
+    animation: rotate 1.5s infinite ease-in-out;
+    transform-origin: center; /* Pivot the rotation from the center */
+    min-width: 50px;
+}
+
+
+
+
+
+
+/* Define the 3D swinging animation */
+  @keyframes swing3d {
+    0% {
+        transform: perspective(500px) translateZ(0);
+    }
+    25% {
+        transform: perspective(500px) translateZ(20px);
+    }
+    50% {
+        transform: perspective(500px) translateZ(0);
+    }
+    75% {
+        transform: perspective(500px) translateZ(-20px);
+    }
+    100% {
+        transform: perspective(500px) translateZ(0);
+    }
+}
+
+/* Apply the animation to the image */
+.intro-img img {
+    animation: swing3d 3s infinite; /* Adjust the duration as needed */
+    transform-style: preserve-3d; /* Ensures 3D transformations are preserved */
+    display: inline-block; /* Ensures transform works correctly */
+}
+
+
+
+
+/* Define the fade-in animation */
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }

@@ -1,0 +1,38 @@
+.loader {
+    z-index: 9999;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    width: 100%;
+    min-height: 100dvh;
+    justify-content: center;
+    align-items: center;
+    background: var(--main-bg-color);
+    transition: opacity 0.75s, visibility 0.75s;
+}
+
+.loader-hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loader::after {
+    content: "";
+    width: 200px;
+    height: 200px;
+    border: 40px solid rgb(180, 180, 180);
+    border-top-color: orange;
+    border-radius: 50%;
+    animation: loading 0.75s ease infinite;
+}
+
+
+@keyframes loading {
+    from {
+        transform:  rotate(0turn);
+    }
+    to {
+        transform: rotate(1turn);
+    }
+}

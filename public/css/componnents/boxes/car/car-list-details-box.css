@@ -1,0 +1,57 @@
+.car-details-list-box {
+    background: var(--loan-box-bg);
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+}
+
+.car-details-list-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    font-size: 16px;
+    border-bottom: 1px solid rgb(221, 221, 221);
+}
+
+.car-details-container {
+   display: flex;
+   align-items: center;
+   gap: 40px;
+}
+
+.car-detail-description {
+    width: 60%;
+}
+
+.car-detail-description h2{
+    color: var(--title-color);
+    font-size: 30px;
+    margin-bottom: 20px;
+    animation: fadeIn 1s ease-in-out forwards; 
+    opacity: 0;
+}
+
+.car-detail-description p{
+    font-size: 18px;
+    animation: fadeIn 2s ease-in-out forwards; 
+    opacity: 0;
+}
+
+.car-details-list-item strong {
+    color: var(--accent-text-color);
+}
+
+
+@media screen and (max-width: 1200px) {
+    .car-details-container {
+      flex-direction: column;
+      align-items: left;
+    }
+    .car-details-list-box,
+    .car-detail-description {
+        width: 100%;
+    }
+  }

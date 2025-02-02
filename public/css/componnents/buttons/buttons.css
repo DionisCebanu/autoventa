@@ -1,0 +1,45 @@
+
+:root{
+    --btn-gradient: linear-gradient(90deg, #7891b8 0%, #5b4143 100%);
+    --transparent-btn: rgba(255, 255, 255, 0.1);
+    --btn-no-bg-color: #7384a5;
+    --btn-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.btn {
+    display: flex;
+    justify-content: center;
+    background: var(--btn-gradient);
+    padding: 20px;
+    border-radius: 10px;
+    border: none;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    transition: var(--transition-all);
+    box-shadow: var(--btn-shadow);
+}
+
+.btn:hover {
+    scale: var(--scale-main);
+    color: rgb(24, 25, 97);
+}
+
+
+/*btn-no-bg*/
+
+.btn-no-bg {
+    background: none;
+    color: var(--btn-no-bg-color);
+    border: 4px solid transparent;
+    border-radius: 10px;
+    border: 4px solid var(--btn-no-bg-color);
+}
+
+/*btn with icon*/
+.btn-icon {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+}

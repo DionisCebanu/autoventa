@@ -1,0 +1,12 @@
+@import url(reservation-form.css);
+@import url(authform.css);
+@import url(searchform.css);
+@import url(general-form.css);
+
+/*filters*/
+@import url(filters/filters.css);
+
+/*general color for forms*/
+:root {
+    --general-form-bg: rgba(0, 0, 0, 0.04);
+}

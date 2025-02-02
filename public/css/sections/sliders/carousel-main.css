@@ -1,0 +1,262 @@
+
+
+/*Carousel section*/
+.carousel-main-section{
+    padding: 0px !important;
+    background-color: var(--general__body--color);
+}
+/* Slideshow container */
+.carousel-container {
+    width: 80%;
+    position: relative;
+    margin: auto;
+  }
+
+  /*individual container*/
+  .mySlides {
+    /* display: none; */
+    height: 80vh;
+  }
+
+  .mySlides img {
+    height: 100%;
+    object-fit: cover;
+    opacity: 80%;
+    border-radius: 10px;
+  }
+  
+  /* Next & previous buttons */
+  .prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+  }
+  
+  /* Position the "next button" to the right */
+  .next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+  }
+  
+  /* On hover, add a black background color with a little bit see-through */
+  .prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.8);
+  }
+  
+ 
+  
+
+  /*product info*/
+  .info-product-promoted {
+    position: absolute;
+    top: 30%;
+    left: 10%;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    background: rgb(0 0 0 / 50%);
+    padding: 20px;
+    border-radius: 20px;
+
+    opacity: 0;
+    animation: fadeIn 0.5s forwards;
+  }
+
+
+  .promoted-product__title h1 {
+    font-size: 50px;
+    color: orange;
+  }
+
+  .promoted-product__description p {
+    font-size: 30px;
+    color: white;
+  }
+
+
+  /*Buttons*/
+  
+
+/*The buttons*/
+.header-box__buttons {
+  display: flex;
+  gap: 20px;
+  display: flex;
+  width: 100%;
+
+  opacity: 0;
+  animation: fadeIn 3s ease-in-out forwards;
+}
+
+.header-box__buttons a {
+  width: 50%;
+}
+
+.header-box__buttons a:first-of-type {
+  opacity: 0;
+  animation: fadeIn 2s ease-in-out forwards;
+}
+
+.header-box__buttons a:last-of-type {
+  opacity: 0;
+  animation: fadeIn 5s ease-in-out forwards;
+}
+
+@media only screen and (max-width: 700px) {
+  .header-box__buttons {
+      flex-direction: column;
+      align-items: center;
+  }
+  .header-box__buttons a {
+      width: 100%;
+  }
+}
+
+.header-box_btn{
+  color: white;
+  width: 200px;
+  text-align: center;
+  padding: 20px;
+  font-weight: bold;
+  font-size: 20px;
+  background-color: var(--primary-link);
+  border-radius: 20px;
+  transition: background-color 0.7s, color 0.5s, transform 0.5s;
+
+  
+}
+
+.rent-link {
+  background: none;
+  color: var(--primary-link);
+  border: 2px solid var(--primary-link);
+
+}
+
+.rent-link:hover{
+  background-color: var(--primary-link);
+  color: white;
+}
+
+.deals-link:hover {
+  background-color: rgb(255, 184, 52);
+  transform: scale(0.97);
+}
+
+  
+  
+  /* The dots/bullets/indicators */
+  .dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+  }
+  
+  .active, .dot:hover {
+    background-color: #717171;
+  }
+  
+  /* Fading animation */
+  .fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+  }
+  
+  @keyframes fade {
+    from {opacity: 0.1} 
+    to {opacity: 1}
+  }
+
+  /*carousel rules*/
+  @media only screen and (max-width: 1500px) {
+    .carousel-container {
+      width: 100%;
+    }
+  }
+
+  /*buttons*/
+  @media only screen and (max-width: 900px) {
+    .header-box__buttons {
+      flex-direction: column;
+    } 
+
+    .header-box__buttons a {
+      width: 70%;
+      margin: 0 auto;
+    }
+    /*Info Product*/
+    .info-product-promoted {
+      top: 40%;
+    }
+
+    /*text-wrap*/
+    .typewriter p, .typewriter h1{
+      white-space: pre-wrap !important;
+      text-align: center;
+    }
+  }
+  
+  /*text and box rules*/
+  @media only screen and (max-width: 600px) {
+    .promoted-product__title h1 {
+      font-size: 40px;
+      text-align: center;
+    }
+    .promoted-product__description p {
+      font-size: 25px;
+      text-align: center;
+    } 
+  }
+
+  /*card rules*/
+  @media only screen and (max-width: 550px) {
+    .promotion-card {
+      top: 60%;
+      right: 15%;
+    }
+  }
+
+  @media only screen and (max-width: 470px) {
+    .promoted-product__title h1 {
+      font-size: 35px;
+    }
+    .info-product-promoted {
+      left: 5%;
+    }
+    .promotion-card {
+      right: 10%;
+    }
+  }
+
+  @media only screen and (max-width: 430px) {
+    .carousel-main-section {
+      padding: 0;
+    }
+
+    /*buttons*/
+    .header-box__buttons a {
+      width: 80%;
+    }
+  }
+
+  
+  /* On smaller screens, decrease text size */
+  @media only screen and (max-width: 530px) {
+    .prev, .next,.footer-carousel {font-size: 11px}
+  }

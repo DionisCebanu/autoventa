@@ -1,0 +1,100 @@
+/* Sortbox styling */
+.sortbox {
+    position: relative;
+    width: 200px;
+  }
+  
+  .sortbox[open] {
+    z-index: 1;
+  }
+  
+  .sortbox-selected {
+    padding: 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    background: var(--main-card-car-color);
+    color: white;
+    list-style: none;
+  }
+  
+  .sortbox-selected::-webkit-details-marker {
+    display: none;
+  }
+  
+  .sortbox[open] .sortbox-selected:before {
+    content: '';
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    background: transparent;
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+  
+  .sortbox-selected:after {
+    content: '';
+    float: right;
+    width: .5rem;
+    height: .5rem;
+    border-bottom: 1px solid currentColor;
+    border-left: 1px solid currentColor;
+    border-bottom-left-radius: 2px;
+    transform: rotate(45deg) translate(50%, 0%);
+    transform-origin: center;
+    transition: transform 100ms ease-in-out;
+  }
+  
+  .sortbox[open] .sortbox-selected:after {
+    transform: rotate(-45deg);
+  }
+  
+  /* Sortbox list styling */
+  .sortbox-list {
+    width: 100%;
+    background-color: #ddd;
+    position: absolute;
+    top: calc(100% + .5rem);
+    left: 0;
+    padding: 10px;
+    margin: 0;
+    border-radius: 5px;
+    max-height: 200px;
+    overflow-y: auto;
+    box-sizing: border-box;
+  }
+  
+  .sortbox-list li {
+    margin: 0;
+  
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .sortbox-list li:last-child {
+    border-bottom: none;
+  }
+  
+  .sortbox-list label {
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    width: 100%;
+  }
+  
+  /* Radio buttons hidden but functional */
+  .sortbox-list input {
+    display: none;
+  }
+  
+  .sortbox-list input:checked + label {
+    font-weight: bold;
+    color: #17a2b8;
+  }
+  
+
+  /*hover*/
+  .sortbox-list li:hover {
+    background-color: var(--main-card-car-color);
+  }

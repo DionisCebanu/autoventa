@@ -1,0 +1,117 @@
+:root {
+    --scrollbar-width: 6px;
+    --scrollbar-track-bg: #2c3e50; /* Darker background for scrollbar track */
+    --font-secondary: "Roboto", sans-serif; /* A more techy look */
+    --font-size-large: 50px; /* Reduced large font size */
+    --font-size-medium: 30px;
+    --line-height-large: 100px;
+    --line-height-medium: 70px;
+    --primary-bg-color: rgba(255, 255, 255, 0.1);; /* Dark background for contrast */
+    --primary-text-color: rgb(224, 142, 70); /* Vibrant red text */
+    --secondary-text-color: #535353; /* Muted blue for secondary text */
+}
+
+
+
+.header_full_sec {
+    margin: 50px 0px;
+    background-color: var(--primary-bg-color); /* Dark background for header section */
+}
+
+.overflow-hidden {
+    overflow: hidden !important;
+}
+
+.logos {
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    /* border: 2px solid var(--primary-text-color); */ /* Red border */
+    border-radius: 10px;
+}
+
+.logos:before,
+.logos:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 20%;
+    height: 100%;
+    z-index: 2;
+}
+
+.logos:before {
+    left: 0;
+    background: linear-gradient(to right, var(--primary-bg-color) 0%, rgba(0, 0, 0, 0) 100%);
+}
+
+.logos-slide {
+    animation: slide 50s linear infinite; /* Slightly faster animation */
+}
+
+@keyframes slide {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+.ticker__item:before {
+    content: '_';
+    color: transparent;
+}
+
+.ticker__item,
+.ticker__item a {
+    display: inline-block;
+    font-size: var(--font-size-large);
+    line-height: var(--line-height-large);
+    font-weight: 700;
+    color: orange !important;
+    font-family: var(--font-secondary); /* Secondary font for a distinct style */
+    text-transform: uppercase; /* Added uppercase for a modern touch */
+    transition: transform 0.3s ease-in-out; /* Smooth transition effect */
+}
+
+.ticker__item:hover {
+    transform: scale(1.1); /* Hover effect to make it interactive */
+    color: var(--secondary-text-color); /* Change text color on hover */
+}
+
+.ticker__item.ticker__item_dark,
+.ticker__item.ticker__item_dark a {
+    color: var(--secondary-text-color) !important; /* Dark text changed to muted blue */
+}
+
+@media (max-width: 991px) {
+    .ticker__item,
+    .ticker__item a {
+        font-size: var(--font-size-medium);
+        line-height: var(--line-height-medium);
+    }
+}
+
+/* Custom Scrollbar styling */
+::-webkit-scrollbar {
+    width: var(--scrollbar-width);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb-bg);
+    background-clip: content-box;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: var(--scrollbar-track-bg);
+}
+
+/* Custom scrollbar for a distinct look */
+::-webkit-scrollbar-thumb:hover {
+    background-color: #2ecc71; /* Slight color change on hover */
+}

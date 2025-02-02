@@ -1,0 +1,108 @@
+.latest-arrivals {
+    padding: 40px 20px;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.latest-arrivals-title h2 {
+    font-size: 32px;
+    font-weight: 600;
+    color: #1c1e21;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+}
+
+.latest-arrivals-cars-container {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.latest-arrival-car-card {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 5px;
+    padding: 10px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    text-align: left;
+    transition: transform 0.3s ease;
+}
+
+.latest-arrival-car-card:hover {
+    transform: scale(1.05);
+}
+
+.latest-arrival-car-card h3 {
+    font-size: 18px;
+    font-weight: 600;
+    padding: 5px;
+    color: #333;
+    text-transform: uppercase;
+    margin-bottom: 0;
+}
+
+.latest-arrival-car-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 5px;
+}
+
+.car-details {
+    font-size: 14px;
+    color: #666;
+}
+
+.car-details p {
+    margin: 5px 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.car-details span {
+    font-weight: 600;
+    text-align: right;
+    color: #000;
+}
+
+.btn-view-vehicle {
+    display: inline-block;
+    width: 100%;
+    background-color: #000;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 600;
+    border-radius: 5px;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-view-vehicle:hover {
+    background-color: #333;
+}
+
+
+
+/* For screens 1300px and smaller */
+@media (max-width: 1500px) {
+    .latest-arrivals-cars-container {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns */
+    }
+}
+
+/* For screens 600px and smaller */
+@media (max-width: 700px) {
+    .latest-arrivals-cars-container {
+        grid-template-columns: 1fr; /* 1 column */
+    }
+}

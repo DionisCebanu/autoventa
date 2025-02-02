@@ -1,0 +1,68 @@
+:root {
+    --loan-box-bg: rgb(234 234 234);
+}
+.loan-calculator-box {
+    border: 6px solid var(--title-color);
+    padding: 40px;
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    max-width: 60%;
+}
+
+.loan-calculator-box div {
+    display: flex;
+    width: 100%;
+    gap: 20px;
+}
+
+
+.loan-box-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 25px;
+    color: var(--title-color);
+}
+
+.loan-header i {
+    font-size: 40px;
+}
+
+
+.loan-header {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    text-align: left;
+}
+
+.loan-header input {
+    width: 100%;
+    padding: 20px;
+    border: none;
+    background-color: var(--loan-box-bg);
+}
+
+.loan-header label {
+    width: 100%;
+}
+
+.loan-header span {
+    color: var(--title-color);
+}
+
+
+
+@media screen and (max-width: 1200px) {
+    .loan-calculator-box {
+      max-width: 100%;
+      padding: 20px;
+    }
+    .loan-header input {
+        padding: 10px;
+    }
+    .loan-box-header {
+        font-size: 20px;
+    }
+  }

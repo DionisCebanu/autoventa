@@ -1,0 +1,151 @@
+.profile {
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    width: 60%;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.profile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.profile-header h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+}
+
+.profile-header img {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+
+.profile-img {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    margin: 20px auto;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid #ddd;
+}
+
+.profile-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.edit-icon {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    width: 24px;
+    height: 24px;
+    background-color: #6c63ff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    cursor: pointer;
+}
+
+article h3 {
+    text-align: center;
+    margin: 10px 0;
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+}
+
+.profile-links {
+    margin-top: 20px;
+}
+
+.link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+}
+
+.link:last-child {
+    border-bottom: none;
+}
+
+.link-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.link-item i {
+    font-size: 20px;
+    color: #6c63ff;
+}
+
+.link p {
+    margin: 0;
+    font-size: 16px;
+    color: #333;
+}
+
+.link img {
+    width: 16px;
+    height: 16px;
+}
+
+.link.logout {
+    padding: 12px;
+    border-top: 1px solid #ddd;
+}
+
+.link.logout .link-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #ff4d4d;
+}
+
+.link.logout i {
+    font-size: 20px;
+    color: #ff4d4d;
+}
+
+.link.logout form {
+    display: inline;
+}
+
+.link.logout button {
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: 16px;
+    color: #ff4d4d;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+}
+
+.link.logout button:hover {
+    text-decoration: underline;
+}
+
+
+
+@media only screen and (max-width: 700px) {
+    .profile {
+      width: 90%;
+    }
+}

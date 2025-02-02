@@ -1,0 +1,90 @@
+@import url(sort.css);
+:root {
+    --filter-form-bg: white;
+}
+/* Filter Section */
+.filter-section {
+    position: relative;
+    padding: 20px 0;
+    margin-top: -100px;
+    width: 100%;
+    
+    border-radius: 40px;
+
+}
+
+.filter-container {
+    max-width: 60%;
+    margin: 0 auto;
+    padding: 40px;
+    background-color: var(--filter-form-bg);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+}
+
+/*main title*/
+.header-img h1{
+    color: white;
+}
+
+/*secondary title*/
+.filter-container h3 {
+    text-align: center;
+}
+.filter-form {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1000px;
+    gap: 20px;
+
+}
+
+.filter-form select {
+    width: 22%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+
+    opacity: 0;
+    animation: fadeIn 3s ease-in-out forwards;
+}
+
+/*btn*/
+.filter-form .btn {
+    width: 50%;
+    background: var(--main-card-car-color);
+
+    opacity: 0;
+    animation: fadeIn 3s ease-in-out forwards;
+}
+
+
+
+@media (max-width: 1300px) {
+    .filter-container {
+        padding: 20px;
+        max-width: 70%;
+    }
+}
+
+@media (max-width: 800px) {
+    .filter-container {
+        max-width: 90%;
+    }
+    .filter-form {
+        flex-direction: column;
+    }
+
+    .filter-form select,
+    .filter-form .btn {
+        display: flex;
+        width: 100%;
+    }
+}

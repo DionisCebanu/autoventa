@@ -1,0 +1,27 @@
+@import url(create-form.css);
+@import url(upload-images.css);
+
+
+/*container*/
+.container-form_sides {
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+}
+
+
+/*Responsive*/
+@media (max-width: 1200px) {
+  .image_container {
+    width: 100%;
+  }
+  .container-form_sides {
+      flex-direction: column;
+  }
+}
+
+@media (max-width: 700px) {
+  .car-form {
+    flex-direction: column;
+  }
+}

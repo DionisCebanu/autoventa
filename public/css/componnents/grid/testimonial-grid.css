@@ -1,0 +1,140 @@
+  
+  /*Cette vidéo m'a aidé à créer la grille
+  https://www.youtube.com/watch?v=rg7Fvvl3taU&t=1074s
+  */
+@import url(testimonial-3cards.css);
+:root{
+  --testimonial-box1: #99b8c5;
+  --testimonial-box2:#9aabb3;
+  --testimonial-box3:#99a9b5;
+  --testimonial-box4:#586f73;
+  --testimonial-box5:#5c7783;
+}
+
+
+
+
+
+  /* components */
+  .testimonial-grid {
+    display: grid;
+    gap: 1.5rem;
+    grid-auto-columns: 1fr;
+    grid-template-areas:
+     'one'
+     'two'
+     'three'
+     'four'
+     'five';
+  
+    padding-block: 2rem;  
+  }
+  
+  .testimonial {
+    
+    padding: 2rem;
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    opacity: 0;
+    animation: fadeIn 0.5s forwards;
+  }
+
+  /*name*/
+  .nom-img-client div h2 {
+    font-size: 30px;
+  }
+  .desc-client >* {
+    margin-bottom: 10px;
+  }
+
+  .desc-client p {
+    font-size: 26px;
+  }
+  
+  .testimonial:nth-child(1) {
+    grid-area: one;
+    background-color: var(--testimonial-box1);
+    animation-delay: 0.3s;
+  }
+  .testimonial:nth-child(2) {
+    grid-area: two;
+    background-color: var(--testimonial-box2);
+    animation-delay: 0.6s;
+  }
+  .testimonial:nth-child(3) {
+    grid-area: three;
+    background-color: var(--testimonial-box3);
+    animation-delay: 0.9s;
+  }
+  .testimonial:nth-child(4) {
+    grid-area: four;
+    background-color: var(--testimonial-box4);
+    animation-delay: 1.2s;
+  }
+  .testimonial:nth-child(5) {
+    grid-area: five;
+    background-color: var(--testimonial-box5);
+    animation-delay: 1.5s;
+  }
+  
+  @media screen and (min-width: 33em) {
+    .testimonial-grid {
+        grid-template-areas:
+        "one one"
+        "two three"
+        "five five"
+        "four four";
+    }
+  }
+  
+  @media screen and (min-width: 38em) {
+    .testimonial-grid {
+      grid-template-areas:
+       'one one'
+       'two five'
+       'three five'
+       'four four';
+    }
+  }
+  
+  @media screen and (min-width: 1200px) {
+    .testimonial-grid {
+        grid-template-areas:
+        "one one two"
+        "five five five"
+        "three four four";
+    }
+  }
+  
+  @media screen and (min-width: 1700px) {
+    .testimonial-grid {
+        grid-template-areas:
+        "one one two five"
+        "three four four five";
+    }
+  }
+  
+  
+  
+  
+  .testimonial img {
+    width: 60px;
+    border-radius: 50%;
+  }
+  
+
+  .testimonial h2, 
+  .testimonial p{
+    color: white;
+  }
+
+
+
+
+  @media (max-width: 750px) {
+    .desc-client p{
+      font-size: 18px;
+    }
+}

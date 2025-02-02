@@ -1,0 +1,85 @@
+.search-car-form-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 30px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.search-car-item {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    gap: 15px;
+}
+
+.search-car-item select,
+.search-car-item input {
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    width: 100%;
+    -webkit-appearance: none; /* Remove default dropdown arrow */
+    -moz-appearance: none;
+    appearance: none;
+    background-color: #fff;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns%3D%22http%3A//www.w3.org/2000/svg%22 viewBox%3D%220 0 4 5%22%3E%3Cpath fill%3D%22%23999%22 d%3D%22M2 0L0 2h4L2 0zM0 3h4l-2 2-2-2z%22/%3E%3C/svg%3E');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 10px;
+}
+
+.search-car-item input {
+    cursor: default;
+}
+
+.btn-search-form {
+    padding: 10px 30px;
+    font-size: 16px;
+    width: 100%;
+    font-weight: bold;
+    border: none;
+    border-radius: 25px !important;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: background-color 0.3s;
+}
+
+.btn-search-form:hover {
+    background-color: #357ABD;
+}
+
+.fa-search {
+    font-size: 16px;
+}
+
+/* For the select dropdown arrow */
+select::-ms-expand {
+    display: none;
+}
+
+.search-car-item select:focus,
+.search-car-item input:focus,
+.btn-search-form:focus {
+    outline: none;
+}
+
+
+
+@media (max-width: 1060px) {
+    .search-car-item {
+        flex-direction: column;
+    }
+}
+
+
+@media (max-width: 700px) {
+    .search-car-item .btn-search-form{
+        padding: 10px;
+    }
+}
