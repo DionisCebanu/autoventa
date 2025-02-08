@@ -45,44 +45,37 @@ class CarController extends Controller
             'seat_capacity' => 'required|integer',
             'drive_type' => 'required|in:FWD,RWD,AWD,4WD',
             'car_condition' => 'required|in:New,Used,Certified',
-            'main_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'additional_images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'main_image_url' => 'required|url',
+            'additional_images_urls.*' => 'nullable|url', 
         ]);
 
         // Create the car
         $car = Car::create($request->all());
 
-        // Handle the main image upload
-    if ($request->hasFile('main_image')) {
-        $mainImagePath = $request->file('main_image')->store('cars/main_images', 'public');
-        session(['main_image_temp' => $mainImagePath]);
+        // Convert main image link to a direct Google Drive link
+        $mainImageUrl = $this->convertGoogleDriveLink($request->main_image_url);
 
         Image::create([
             'car_id' => $car->id,
-            'image_path' => $mainImagePath,
+            'image_path' => $mainImageUrl,
             'is_main' => true,
         ]);
-    }
 
-    // Handle additional images upload
-    $additionalImages = [];
-    if ($request->hasFile('additional_images')) {
-        foreach ($request->file('additional_images') as $image) {
-            $additionalImagePath = $image->store('cars/additional_images', 'public');
-            $additionalImages[] = $additionalImagePath; // Add to the array
 
-            Image::create([
-                'car_id' => $car->id,
-                'image_path' => $additionalImagePath,
-                'is_main' => false,
-            ]);
-             }
-             session(['additional_images_temp' => $additionalImages]); // Use the correct variable
+        // Handle additional images upload
+        if ($request->has('additional_images_urls')) {
+            foreach ($request->additional_images_urls as $imageUrl) {
+                $convertedImageUrl = $this->convertGoogleDriveLink($imageUrl);
+    
+                Image::create([
+                    'car_id' => $car->id,
+                    'image_path' => $convertedImageUrl,
+                    'is_main' => false,
+                ]);
+            }
         }
-        // Clear the session data for temporary images
-        session()->forget(['main_image_temp', 'additional_images_temp']);
-        // Redirect with a success message
-        return redirect()->route('car.index')->with('success', 'Car created successfully with images!');
+            // Redirect with a success message
+            return redirect()->route('car.index')->with('success', 'Car created successfully with images!');
     }
 
 
@@ -114,5 +107,17 @@ class CarController extends Controller
         return view('car.show', compact('car'));    
     }
 
+
+
+    /**
+ * Convert a Google Drive share link into a direct image URL.
+ */
+    private function convertGoogleDriveLink($url)
+    {
+        if (preg_match('/drive\.google\.com\/file\/d\/([^\/]+)/', $url, $matches)) {
+            return "https://drive.google.com/thumbnail?id={$matches[1]}&sz=w1000";
+        }
+        return $url; // Return original URL if it's already a direct link
+    }
 
 }

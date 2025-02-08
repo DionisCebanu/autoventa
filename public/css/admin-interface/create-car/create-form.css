@@ -22,9 +22,24 @@
     padding: 20px;
   }
 
+  .additional-images-section input,
+  .upload-box input {
+    background-color: #ffffff;
+    padding: 10px;
+    width: 100%;
+    border-radius: 10px;
+    border: 2px solid rgb(172, 172, 172);
+  }
+
+  .additional_images_input {
+    display: flex;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
   img#main-image-preview {
     width: 100%;
-}
+  }
   
   .upload-icon {
     width: 80px;

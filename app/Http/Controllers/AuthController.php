@@ -59,6 +59,10 @@ class AuthController extends Controller
         if (Auth::attempt($request->only('email', 'password'))) {
             $request->session()->regenerate(); // Prevent session fixation attacks
 
+             //Store user name in session
+             $user = Auth::user();
+             session(['user_name' => $user->name]);
+
             // Redirect to profile or intended page
             return redirect()->intended('/profile')->with('success', 'Login successful!');
         }

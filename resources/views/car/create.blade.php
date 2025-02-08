@@ -7,63 +7,76 @@
         <form class="container-form_sides" action="{{ route('car.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="image_container">
-    <!-- Main Image Section -->
-    <div class="main-image-section">
-        <h3>Main Image</h3>
-        <div class="upload-box">
-            <img 
-                src="{{ session('main_image_temp') ? Storage::url(session('main_image_temp')) : asset('img/administration/upload.png') }}" 
-                alt="Main Image Preview" 
-                class="upload-icon" 
-                
-                id="main-image-preview"
-            >
-            <input 
-                class="browse-button" 
-                type="file" 
-                name="main_image" 
-                id="main_image" 
-                onchange="previewImage(event, 'main-image-preview')"
-            >
-            <input type="hidden" name="main_image_temp" value="{{ session('main_image_temp') }}">
-            @error('main_image')
-                <div class="text-danger">{{ $message }}</div>
-            @enderror
-        </div>
-    </div>
+                <!-- Main Image Section -->
+                <div class="main-image-section">
+                    <h3>Main Image</h3>
+                    <div class="upload-box">
+                        <img id="main-image-preview" 
+                            src="{{ old('main_image_url', asset('img/administration/upload.png')) }}" 
+                            alt="Upload Icon">
+                        <input type="text" 
+                            name="main_image_url" 
+                            id="main_image_url" 
+                            placeholder="Enter Google Drive image link" 
+                            value="{{ old('main_image_url') }}"
+                            oninput="previewMainImage()">
+                        @error('main_image_url')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
 
-    <!-- Additional Images Section -->
-    <div class="additional-images-section">
-        <h3>Additional Images</h3>
-        <div class="thumbnails">
-            @php
-                $additionalImages = session('additional_images_temp', []);
-            @endphp
-            @for ($i = 0; $i < 3; $i++)
-                <div class="thumbnail">
-                    <img 
-                        src="{{ isset($additionalImages[$i]) ? Storage::url($additionalImages[$i]) : asset('img/administration/placeholder.png') }}" 
-                        alt="Additional Image {{ $i + 1 }}" 
-                        class="additional-image-preview"
-                        id="additional-image-preview-{{ $i }}"
-                    >
+                <!-- Additional Images Section -->
+                <div class="additional-images-section">
+                <h3>Additional Images</h3>
+                    <div class="thumbnails" id="additional-thumbnails">
+                        <div class="thumbnail">
+                            <img src="{{ asset('img/administration/upload.png') }}" alt="Additional Image">
+                        </div>
+                        <div class="thumbnail">
+                            <img src="{{ asset('img/administration/upload.png') }}" alt="Additional Image">
+                        </div>
+                        <div class="thumbnail">
+                            <img src="{{ asset('img/administration/upload.png') }}" alt="Additional Image">
+                        </div>
+                    </div>
+                    <div class="additional_images_input">
+                        <input type="text"
+                            name="additional_images_urls[]"
+                            placeholder="Enter additional Google Drive image link"
+                            oninput="addThumbnail(this)">
+                            @error('additional_images_urls.*')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                    </div>
+                    <div class="additional_images_input">
+                        <input type="text"
+                            name="additional_images_urls[]"
+                            placeholder="Enter additional Google Drive image link"
+                            oninput="addThumbnail(this)">
+                            @error('additional_images_urls.*')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                    </div>
+                    <div class="additional_images_input">
+                        <input type="text"
+                            name="additional_images_urls[]"
+                            placeholder="Enter additional Google Drive image link"
+                            oninput="addThumbnail(this)">
+                            @error('additional_images_urls.*')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                    </div>
+                    <div class="additional_images_input">
+                        <input type="text"
+                            name="additional_images_urls[]"
+                            placeholder="Enter additional Google Drive image link"
+                            oninput="addThumbnail(this)">
+                            @error('additional_images_urls.*')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                    </div>
                 </div>
-                @endfor
-                </div>
-                <input 
-                    class="browse-button" 
-                    type="file" 
-                    id="additional-images" 
-                    name="additional_images[]" 
-                    multiple 
-                    onchange="previewAdditionalImages(event, {{ count($additionalImages) }})"
-                >
-                @if ($errors->has('additional_images.*'))
-                    <div class="text-danger">{{ $errors->first('additional_images.*') }}</div>
-                @endif
-                <input type="hidden" name="additional_images_temp[]" value="{{ json_encode($additionalImages) }}">
-        </div>
-    </div>
 
             </div>
             <div class="form-container">

@@ -7,36 +7,38 @@
         <div class="structure">
 
            <header class="flex gap30">
-               <div class="gallery-container">
-                    <div class="main-image">
-                        <button class="carousel-btn prev-btn">&lt;</button>
-                        <img 
-                            src="{{ $car->images->first() ? Storage::url($car->images->first()->image_path) : asset('img/gallery/collection/default-car.jpg') }}" 
-                            alt="Main Car Image" 
-                            id="main-image"
-                        >
-                        <button class="carousel-btn next-btn">&gt;</button>
-                    </div>
+           <div class="gallery-container">
+                <!-- Main Image Section -->
+                <div class="main-image">
+                    <button class="carousel-btn prev-btn">&lt;</button>
+                    <img 
+                        src="{{ $car->images->first() ? $car->images->first()->image_path : asset('img/gallery/collection/default-car.jpg') }}" 
+                        alt="Main Car Image" 
+                        id="main-image"
+                    >
+                    <button class="carousel-btn next-btn">&gt;</button>
+                </div>
 
-                   <div class="car_details_images-grid">
+                <!-- Thumbnails Section -->
+                <div class="car_details_images-grid">
                     @foreach ($car->images as $index => $image)
                         @if ($index < 4)
                             <div class="car_detail_image">
-                                <img src="{{ Storage::url($image->image_path) }}" alt="Thumbnail {{ $index + 1 }}">
+                                <img src="{{ $image->image_path }}" alt="Thumbnail {{ $index + 1 }}">
                             </div>
                         @else
                             <div class="car_detail_image">
                                 <div class="car_detail_image-overlay">
                                     <span>Images ({{ $car->images->count() }})</span>
-                                    <img src="{{ Storage::url($image->image_path) }}" alt="Thumbnail {{ $index + 1 }}">
+                                    <img src="{{ $image->image_path }}" alt="Thumbnail {{ $index + 1 }}">
                                 </div>
                             </div>
                             @break
                         @endif
                     @endforeach
-                    </div>
+                </div>
+            </div>
 
-               </div>
            </header>
             <section>
                 <div class="car-details-header">
@@ -160,7 +162,7 @@
 
     <script>
     // Array of all image paths for the carousel
-    const images = @json($car->images->map(fn($image) => Storage::url($image->image_path))->toArray());
+    const images = @json($car->images->pluck('image_path')->toArray());
 
     // Current image index
     let currentIndex = 0;
@@ -195,6 +197,7 @@
         });
     });
 </script>
+
 
 
 @endsection
