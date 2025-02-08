@@ -5,9 +5,14 @@
 
  <main class="flex-center">
         <div class="structure">
-
+           <div class="btn-container flex-col gap20 mb-20 mt-10">
+                <a href="/catalog" class="btn-no-bg btn-icon p-10">Back to the Catalog  <i class="fa-solid fa-backward"></i></a>
+                    @auth
+                        <a href="{{ route('car.edit', $car->id) }}" class="btn btn-icon p-10">Edit This Car <i class="fa-solid fa-pen-to-square"></i></a>
+                    @endauth
+                </div>
            <header class="flex gap30">
-           <div class="gallery-container">
+                <div class="gallery-container">
                 <!-- Main Image Section -->
                 <div class="main-image">
                     <button class="carousel-btn prev-btn">&lt;</button>
@@ -37,8 +42,7 @@
                         @endif
                     @endforeach
                 </div>
-            </div>
-
+                </div>
            </header>
             <section>
                 <div class="car-details-header">
@@ -79,7 +83,7 @@
                             <strong><div class="dot"></div> Year:</strong><span>{{ $car->year }}</span>
                         </div>
                         <div class="car-details-list-item">
-                            <strong><div class="dot"></div> Color:</strong><span>{{ $car->color ?? 'Not specified' }}</span>
+                            <strong><div class="dot"></div> Milleage:</strong><span>{{ $car->mileage ?? 'Not specified' }}</span>
                         </div>
                         <div class="car-details-list-item">
                             <strong><div class="dot"></div> Transmission:</strong><span>{{ $car->transmission }}</span>

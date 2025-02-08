@@ -1,5 +1,5 @@
 :root {
-    --loan-box-bg: rgb(234 234 234);
+    --loan-box-bg: rgb(252 252 252);
 }
 .loan-calculator-box {
     border: 6px solid var(--title-color);
