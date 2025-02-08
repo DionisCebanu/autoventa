@@ -71,15 +71,14 @@
   }
   
   .thumbnails {
-    display: flex;
+    display: grid;
+    grid-template-columns: auto auto;
     gap: 10px;
     margin-bottom: 15px;
-  }
+}
   
   .thumbnail {
     padding: 5px;
-    width: 100px;
-    height: 100px;
     background-color: #e0e0e0;
     border-radius: 4px;
     display: flex;

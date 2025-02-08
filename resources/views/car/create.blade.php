@@ -12,7 +12,7 @@
                     <h3>Main Image</h3>
                     <div class="upload-box">
                         <img id="main-image-preview" 
-                            src="{{ old('main_image_url', asset('img/administration/upload.png')) }}" 
+                            src="{{ old('main_image_url') ? asset('img/administration/upload-success.png') : asset('img/administration/upload.png') }}"  
                             alt="Upload Icon">
                         <input type="text" 
                             name="main_image_url" 
@@ -21,7 +21,7 @@
                             value="{{ old('main_image_url') }}"
                             oninput="previewMainImage()">
                         @error('main_image_url')
-                            <div class="text-danger">{{ $message }}</div>
+                            <div class="error_field">{{ $message }}</div>
                         @enderror
                     </div>
                 </div>
@@ -30,52 +30,31 @@
                 <div class="additional-images-section">
                 <h3>Additional Images</h3>
                     <div class="thumbnails" id="additional-thumbnails">
-                        <div class="thumbnail">
-                            <img src="{{ asset('img/administration/upload.png') }}" alt="Additional Image">
-                        </div>
-                        <div class="thumbnail">
-                            <img src="{{ asset('img/administration/upload.png') }}" alt="Additional Image">
-                        </div>
-                        <div class="thumbnail">
-                            <img src="{{ asset('img/administration/upload.png') }}" alt="Additional Image">
-                        </div>
+                        @for ($i = 0; $i < 4; $i++)
+                            <div class="thumbnail" id="thumbnail-{{ $i }}">
+                                <img id="thumbnail-upload-{{ $i }}" src="{{ asset('img/administration/upload.png') }}" alt="Additional Image">
+                                <img id="thumbnail-success-{{ $i }}" src="{{ asset('img/administration/upload-success.png') }}" alt="Additional Image" style="display: none;">
+                            </div>
+                        @endfor
                     </div>
-                    <div class="additional_images_input">
-                        <input type="text"
-                            name="additional_images_urls[]"
-                            placeholder="Enter additional Google Drive image link"
-                            oninput="addThumbnail(this)">
-                            @error('additional_images_urls.*')
-                                <div class="text-danger">{{ $message }}</div>
+                    <div class="additional_images_input flex-col gap20">
+                        @php
+                            $additionalImages = old('additional_images_urls', []); // Retrieve old values or default to an empty array
+                        @endphp
+
+                        @for ($i = 0; $i < 4; $i++)
+                            <input type="text"
+                                name="additional_images_urls[]"
+                                placeholder="Enter additional Google Drive image link"
+                                value="{{ isset($additionalImages[$i]) ? $additionalImages[$i] : '' }}"
+                                id="additional-input-{{ $i }}"
+                                oninput="updateThumbnail({{ $i }})">
+                            @error('additional_images_urls.' . $i)
+                                <div class="error_field">{{ $message }}</div>
                             @enderror
+                        @endfor
                     </div>
-                    <div class="additional_images_input">
-                        <input type="text"
-                            name="additional_images_urls[]"
-                            placeholder="Enter additional Google Drive image link"
-                            oninput="addThumbnail(this)">
-                            @error('additional_images_urls.*')
-                                <div class="text-danger">{{ $message }}</div>
-                            @enderror
-                    </div>
-                    <div class="additional_images_input">
-                        <input type="text"
-                            name="additional_images_urls[]"
-                            placeholder="Enter additional Google Drive image link"
-                            oninput="addThumbnail(this)">
-                            @error('additional_images_urls.*')
-                                <div class="text-danger">{{ $message }}</div>
-                            @enderror
-                    </div>
-                    <div class="additional_images_input">
-                        <input type="text"
-                            name="additional_images_urls[]"
-                            placeholder="Enter additional Google Drive image link"
-                            oninput="addThumbnail(this)">
-                            @error('additional_images_urls.*')
-                                <div class="text-danger">{{ $message }}</div>
-                            @enderror
-                    </div>
+
                 </div>
 
             </div>
@@ -235,35 +214,47 @@
     </section>
 </main>
 
-
 <script>
-    // Preview main image
-    function previewImage(event, previewId) {
-        const file = event.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function (e) {
-                document.getElementById(previewId).src = e.target.result;
-            };
-            reader.readAsDataURL(file);
+    function previewMainImage() {
+        const input = document.getElementById("main_image_url");
+        const preview = document.getElementById("main-image-preview");
+
+        if (input.value.trim() !== "") {
+            // Switch to the success image if input has a value
+            preview.src = "{{ asset('img/administration/upload-success.png') }}";
+        } else {
+            // Switch to the default image if input is empty
+            preview.src = "{{ asset('img/administration/upload.png') }}";
         }
     }
 
-    // Preview additional images
-    function previewAdditionalImages(event, maxCount) {
-        const files = event.target.files;
-        for (let i = 0; i < Math.min(files.length, maxCount); i++) {
-            const reader = new FileReader();
-            reader.onload = function (e) {
-                const previewId = `additional-image-preview-${i}`;
-                const imgElement = document.getElementById(previewId);
-                if (imgElement) {
-                    imgElement.src = e.target.result;
-                }
-            };
-            reader.readAsDataURL(files[i]);
+    function updateThumbnail(index) {
+        const input = document.getElementById(`additional-input-${index}`);
+        const uploadImg = document.getElementById(`thumbnail-upload-${index}`);
+        const successImg = document.getElementById(`thumbnail-success-${index}`);
+
+        if (input.value.trim() !== "") {
+            // If input has a value, show the "success" thumbnail and hide "upload"
+            uploadImg.style.display = "none";
+            successImg.style.display = "block";
+        } else {
+            // If input is empty, show the "upload" thumbnail and hide "success"
+            uploadImg.style.display = "block";
+            successImg.style.display = "none";
         }
     }
+
+// Initialize thumbnails based on pre-filled values
+    document.addEventListener("DOMContentLoaded", () => {
+        const totalInputs = 4; // Number of inputs
+        for (let i = 0; i < totalInputs; i++) {
+            updateThumbnail(i); // Initialize each thumbnail based on input value
+        }
+    });
+    document.addEventListener("DOMContentLoaded", () => {
+        previewMainImage(); // Ensure the correct preview image is displayed
+    });
+
 </script>
 
 
