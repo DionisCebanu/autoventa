@@ -83,7 +83,6 @@ document.addEventListener('DOMContentLoaded', () => {
         fetch(`/api/cars/filter?${query}`)
             .then(res => res.json())
             .then(cars => {
-                console.log('Cars received from API:', cars);
                 renderCars(cars);
             })
             .catch(err => console.error('Erreur lors de la récupération des voitures filtrées :', err));
