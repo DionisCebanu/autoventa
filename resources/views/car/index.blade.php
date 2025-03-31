@@ -41,29 +41,24 @@
     <section class="catalog flex-center">
         <div class="structure">
             <header class="catalog-header flex-right">
-                <details class="sortbox">
-                    <summary class="sortbox-selected">
-                      <span>Sort By:</span>
-                    </summary>
-                    <ul class="sortbox-list">
-                      <li>
-                        <label for="option1">Default</label>
-                        <input type="radio" name="sortbox" id="option1">
-                      </li>
-                      <li>
-                        <label for="option2">Price: Low-High</label>
-                        <input type="radio" name="sortbox" id="option2">
-                      </li>
-                      <li>
-                        <label for="option3">Price: High to Low</label>
-                        <input type="radio" name="sortbox" id="option3">
-                      </li>
-                      <li>
-                        <label for="option4">Item 4</label>
-                        <input type="radio" name="sortbox" id="option4">
-                      </li>
-                    </ul>
-                </details>
+            <details class="sortbox" id="sortbox">
+                <summary class="sortbox-selected"><span>Sort By:</span></summary>
+                <ul class="sortbox-list">
+                    <li>
+                    <label for="default">Default</label>
+                    <input type="radio" name="sort" id="default" checked>
+                    </li>
+                    <li>
+                    <label for="price_ascending">Price: Low-High</label>
+                    <input type="radio" name="sort" id="price_ascending">
+                    </li>
+                    <li>
+                    <label for="price_descending">Price: High to Low</label>
+                    <input type="radio" name="sort" id="price_descending">
+                    </li>
+                </ul>
+            </details>
+
 
 
             </header>
@@ -125,5 +120,6 @@
 
     <script src="{{ asset('js/catalog/grid-handler.js')}}" defer></script>
     <script src="{{ asset('js/catalog/filter-api.js')}}" defer></script>
+
 
 @endsection

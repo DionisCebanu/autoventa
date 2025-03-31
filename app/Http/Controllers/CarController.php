@@ -199,23 +199,34 @@ class CarController extends Controller
         $query = Car::with(['images' => function ($query) {
             $query->where('is_main', true);
         }]);
-
+    
         if ($request->make) {
             $query->where('make', $request->make);
         }
-
+    
         if ($request->model) {
             $query->where('model', $request->model);
         }
-
+    
         if ($request->year) {
             $query->where('year', $request->year);
         }
-
-        $cars = $query->get();
-
-        return response()->json($cars);
-    }
+    
+        // Sorting of the results
+        switch ($request->sort) {
+            case 'price_ascending':
+                $query->orderBy('price', 'asc');
+                break;
+            case 'price_descending':
+                $query->orderBy('price', 'desc');
+                break;
+            default:
+                $query->latest(); 
+                break;
+        }
+    
+        return response()->json($query->get());
+    }    
 
     /**
      * Get Distinct Options
