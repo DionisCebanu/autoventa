@@ -72,6 +72,10 @@ Route::get('/catalog', [CarController::class, 'index'])->name('car.index');
  */
 Route::get('/api/cars/filter', [CarController::class, 'filter'])->name('car.filter');
 
+/**
+ * Distinct options
+ */
+Route::get('/api/cars/options', [CarController::class, 'getOptions'])->name('car.options');
 
 /**
  * Car Show

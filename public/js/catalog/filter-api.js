@@ -1,3 +1,49 @@
+document.getElementById('make').addEventListener('change', function () {
+    const make = this.value;
+    const modelSelect = document.getElementById('model');
+    const yearSelect = document.getElementById('year');
+
+    // Reset les anciens modèles et années
+    modelSelect.innerHTML = '<option value="" disabled selected>Models</option>';
+    yearSelect.innerHTML = '<option value="" disabled selected>Year</option>';
+
+    if (!make) return;
+
+    fetch(`/api/cars/options?make=${make}`)
+        .then(res => res.json())
+        .then(data => {
+            data.models.forEach(model => {
+                const opt = document.createElement('option');
+                opt.value = model;
+                opt.textContent = model;
+                modelSelect.appendChild(opt);
+            });
+        });
+});
+
+document.getElementById('model').addEventListener('change', function () {
+    const make = document.getElementById('make').value;
+    const model = this.value;
+    const yearSelect = document.getElementById('year');
+
+    // Reset les anciennes années
+    yearSelect.innerHTML = '<option value="" disabled selected>Year</option>';
+
+    if (!make || !model) return;
+
+    fetch(`/api/cars/options?make=${make}&model=${model}`)
+        .then(res => res.json())
+        .then(data => {
+            data.years.forEach(year => {
+                const opt = document.createElement('option');
+                opt.value = year;
+                opt.textContent = year;
+                yearSelect.appendChild(opt);
+            });
+        });
+});
+
+
 document.getElementById('filter-form').addEventListener('submit', function(e) {
     e.preventDefault();
 

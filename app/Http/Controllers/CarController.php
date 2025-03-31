@@ -217,6 +217,30 @@ class CarController extends Controller
         return response()->json($cars);
     }
 
+    /**
+     * Get Distinct Options
+     */
+    public function getOptions(Request $request)
+    {
+        $make = $request->make;
+        $model = $request->model;
+
+        if ($make && !$model) {
+            // Si seule la marque est sélectionnée → renvoyer les modèles
+            $models = Car::where('make', $make)->select('model')->distinct()->orderBy('model')->pluck('model');
+            return response()->json(['models' => $models]);
+        }
+
+        if ($make && $model) {
+            // Si marque + modèle → renvoyer les années
+            $years = Car::where('make', $make)->where('model', $model)->select('year')->distinct()->orderByDesc('year')->pluck('year');
+            return response()->json(['years' => $years]);
+        }
+
+        return response()->json([]);
+    }
+
+
 
 
     /**
