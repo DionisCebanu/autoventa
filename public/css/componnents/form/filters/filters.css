@@ -39,6 +39,7 @@
 .filter-form {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     width: 100%;
     max-width: 1000px;
     gap: 20px;
@@ -52,15 +53,34 @@
     border-radius: 4px;
     background-color: #f9f9f9;
 
+    appearance: none; 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
     opacity: 0;
     animation: fadeIn 3s ease-in-out forwards;
 }
 
+.filter-form select option {
+    background-color: #fff;
+    color: #333;
+    padding: 20px 20px;
+    border: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  /* Hover effect for options */
+  .filter-form select option:hover {
+    background-color: #007BFF; /* Blue background on hover */
+    color: #fff; /* White text on hover */
+    cursor: pointer;
+  }
+
 /*btn*/
 .filter-form .btn {
-    width: 50%;
+    width: 100%;
     background: var(--main-card-car-color);
-
+    cursor: pointer;
     opacity: 0;
     animation: fadeIn 3s ease-in-out forwards;
 }
@@ -88,3 +108,39 @@
         width: 100%;
     }
 }
+
+
+
+.custom-select {
+    position: relative;
+    width: 100%;
+    cursor: pointer;
+  }
+  
+  .select-selected {
+    padding: 15px 20px;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+  }
+  
+  .select-options {
+    display: none;
+    position: absolute;
+    width: 100%;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-top: none;
+    z-index: 10;
+    max-height: 200px;
+    overflow-y: auto;
+  }
+  
+  .select-options li {
+    padding: 15px 20px;
+  }
+  
+  .select-options li:hover {
+    background-color: #f0f0f0;
+  }
+  

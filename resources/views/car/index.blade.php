@@ -13,26 +13,37 @@
     <section class="filter-section">
         <div class="filter-container">
             <form class="filter-form" id="filter-form">
-                <select name="make" id="make">
-                    <option value="" disabled selected>Makes</option>
-                    @foreach($makes as $make)
-                        <option value="{{ $make }}">{{ $make }}</option>
-                    @endforeach
-                </select>
+            <div class="custom-select" data-name="make">
+                <div class="select-selected">Makes</div>
+                    <ul class="select-options">
+                        @foreach($makes as $make)
+                        <li data-value="{{ $make }}">{{ $make }}</li>
+                        @endforeach
+                    </ul>
+                    <input type="hidden" name="make" id="make">
+                </div>
 
-                <select name="model" id="model">
-                    <option value="" disabled selected>Models</option>
-                    @foreach($models as $model)
-                        <option value="{{ $model }}">{{ $model }}</option>
-                    @endforeach
-                </select>
+                <!-- MODEL -->
+                <div class="custom-select" data-name="model">
+                    <div class="select-selected">Models</div>
+                    <ul class="select-options">
+                        @foreach($models as $model)
+                        <li data-value="{{ $model }}">{{ $model }}</li>
+                        @endforeach
+                    </ul>
+                    <input type="hidden" name="model" id="model">
+                </div>
 
-                <select name="year" id="year">
-                    <option value="" disabled selected>Year</option>
-                    @foreach($years as $year)
-                        <option value="{{ $year }}">{{ $year }}</option>
-                    @endforeach
-                </select>
+                <!-- YEAR -->
+                <div class="custom-select" data-name="year">
+                    <div class="select-selected">Years</div>
+                        <ul class="select-options">
+                            @foreach($years as $year)
+                            <li data-value="{{ $year }}">{{ $year }}</li>
+                            @endforeach
+                        </ul>
+                        <input type="hidden" name="year" id="year">
+                    </div>
                 <button class="btn" type="submit" id="filter-btn">Search Now</button>
             </form>
         </div>

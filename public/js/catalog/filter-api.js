@@ -1,25 +1,109 @@
-document.getElementById('make').addEventListener('change', function () {
-    const make = this.value;
-    const modelSelect = document.getElementById('model');
-    const yearSelect = document.getElementById('year');
+document.querySelectorAll('.custom-select').forEach(select => {
+    const name = select.dataset.name;
+    const selected = select.querySelector('.select-selected');
+    const options = select.querySelector('.select-options');
+    const input = select.querySelector('input');
 
-    // Reset les anciens modèles et années
-    modelSelect.innerHTML = '<option value="" disabled selected>Models</option>';
-    yearSelect.innerHTML = '<option value="" disabled selected>Year</option>';
+    selected.addEventListener('click', () => {
+        document.querySelectorAll('.select-options').forEach(opt => {
+            if (opt !== options) opt.style.display = 'none';
+        });
+        options.style.display = options.style.display === 'block' ? 'none' : 'block';
+    });
 
-    if (!make) return;
+    options.querySelectorAll('li').forEach(option => {
+        option.addEventListener('click', () => {
+            selected.textContent = option.textContent;
+            input.value = option.dataset.value;
+            options.style.display = 'none';
+
+            // 👉 ONLY if it's the 'make' dropdown, fetch models
+            if (name === 'make') {
+                fetchModels(option.dataset.value);
+            }
+
+            // 👉 If it's the 'model' dropdown, fetch years
+            if (name === 'model') {
+                const makeValue = document.querySelector('input[name="make"]').value;
+                fetchYears(makeValue, option.dataset.value);
+            }
+        });
+    });
+});
+
+/**
+ * 
+ * @param {Make} make 
+ * @RETURN {model}
+ */
+
+function fetchModels(make) {
+    const modelSelect = document.querySelector('.custom-select[data-name="model"]');
+    const modelList = modelSelect.querySelector('.select-options');
+    const modelSelected = modelSelect.querySelector('.select-selected');
+    const modelInput = modelSelect.querySelector('input');
+
+    // Reset
+    modelList.innerHTML = '';
+    modelSelected.textContent = 'Models';
+    modelInput.value = '';
+
+    const yearSelect = document.querySelector('.custom-select[data-name="year"]');
+    yearSelect.querySelector('.select-options').innerHTML = '';
+    yearSelect.querySelector('.select-selected').textContent = 'Years';
+    yearSelect.querySelector('input').value = '';
 
     fetch(`/api/cars/options?make=${make}`)
         .then(res => res.json())
         .then(data => {
             data.models.forEach(model => {
-                const opt = document.createElement('option');
-                opt.value = model;
-                opt.textContent = model;
-                modelSelect.appendChild(opt);
+                const li = document.createElement('li');
+                li.dataset.value = model;
+                li.textContent = model;
+                li.addEventListener('click', () => {
+                    modelSelected.textContent = model;
+                    modelInput.value = model;
+                    modelList.style.display = 'none';
+                    fetchYears(make, model); 
+                });
+                modelList.appendChild(li);
             });
         });
-});
+}
+
+
+/**
+ * 
+ * @param {make, model} 
+ * @RETURN {YEAR}
+ */
+function fetchYears(make, model) {
+    const yearSelect = document.querySelector('.custom-select[data-name="year"]');
+    const yearList = yearSelect.querySelector('.select-options');
+    const yearSelected = yearSelect.querySelector('.select-selected');
+    const yearInput = yearSelect.querySelector('input');
+
+    yearList.innerHTML = '';
+    yearSelected.textContent = 'Years';
+    yearInput.value = '';
+
+    fetch(`/api/cars/options?make=${make}&model=${model}`)
+        .then(res => res.json())
+        .then(data => {
+            data.years.forEach(year => {
+                const li = document.createElement('li');
+                li.dataset.value = year;
+                li.textContent = year;
+                li.addEventListener('click', () => {
+                    yearSelected.textContent = year;
+                    yearInput.value = year;
+                    yearList.style.display = 'none';
+                });
+                yearList.appendChild(li);
+            });
+        });
+}
+
 
 document.getElementById('model').addEventListener('change', function () {
     const make = document.getElementById('make').value;
@@ -154,3 +238,5 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
     }
 });
+
+
