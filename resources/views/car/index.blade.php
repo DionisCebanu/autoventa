@@ -12,24 +12,28 @@
 
     <section class="filter-section">
         <div class="filter-container">
-            <form class="filter-form">
-                <select>
+            <form class="filter-form" id="filter-form">
+                <select name="make" id="make">
                     <option value="" disabled selected>Makes</option>
-                    <!-- Add more options -->
+                    @foreach($makes as $make)
+                        <option value="{{ $make }}">{{ $make }}</option>
+                    @endforeach
                 </select>
-                <select>
+
+                <select name="model" id="model">
                     <option value="" disabled selected>Models</option>
-                    <!-- Add more options -->
+                    @foreach($models as $model)
+                        <option value="{{ $model }}">{{ $model }}</option>
+                    @endforeach
                 </select>
-                <select>
-                    <option value="" disabled selected>Price</option>
-                    <!-- Add more options -->
-                </select>
-                <select>
+
+                <select name="year" id="year">
                     <option value="" disabled selected>Year</option>
-                    <!-- Add more options -->
+                    @foreach($years as $year)
+                        <option value="{{ $year }}">{{ $year }}</option>
+                    @endforeach
                 </select>
-                <button class="btn" type="submit">Search Now</button>
+                <button class="btn" type="submit" id="filter-btn">Search Now</button>
             </form>
         </div>
     </section>
@@ -64,7 +68,7 @@
 
             </header>
 
-            <section class="grid-container">
+            <section class="grid-container" id="car-results">
                 @foreach ($cars as $car)
                     <div class="card-car">
                         <div class="card-car-img">
@@ -119,5 +123,7 @@
         </div>
     </section>
 
+    <script src="{{ asset('js/catalog/grid-handler.js')}}" defer></script>
+    <script src="{{ asset('js/catalog/filter-api.js')}}" defer></script>
 
 @endsection

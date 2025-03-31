@@ -168,8 +168,13 @@ class CarController extends Controller
             $query->where('is_main', true);
         }])->get();
 
+        // Distinct filter values 
+        $makes = Car::select('make')->distinct()->orderBy('make')->pluck('make');
+        $models = Car::select('model')->distinct()->orderBy('model')->pluck('model');
+        $years = Car::select('year')->distinct()->orderByDesc('year')->pluck('year');
+
         // Return the index view with the cars
-        return view('car.index', compact('cars'));
+        return view('car.index', compact('cars', 'makes', 'models', 'years'));
     }
 
 
@@ -184,6 +189,32 @@ class CarController extends Controller
 
         // Pass the car to the view
         return view('car.show', compact('car'));    
+    }
+
+    /**
+     * Filter
+     */
+    public function filter(Request $request)
+    {
+        $query = Car::with(['images' => function ($query) {
+            $query->where('is_main', true);
+        }]);
+
+        if ($request->make) {
+            $query->where('make', $request->make);
+        }
+
+        if ($request->model) {
+            $query->where('model', $request->model);
+        }
+
+        if ($request->year) {
+            $query->where('year', $request->year);
+        }
+
+        $cars = $query->get();
+
+        return response()->json($cars);
     }
 
 

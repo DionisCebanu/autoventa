@@ -66,6 +66,13 @@ Route::get('/about', function () {
 
 
 Route::get('/catalog', [CarController::class, 'index'])->name('car.index');
+
+/**
+ * Filter the cars
+ */
+Route::get('/api/cars/filter', [CarController::class, 'filter'])->name('car.filter');
+
+
 /**
  * Car Show
  */
