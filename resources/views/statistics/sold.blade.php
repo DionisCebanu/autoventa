@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Profile')
+@section('title', 'Sold Cars')
 @section('content')
 
 <section class="flex-center">

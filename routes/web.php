@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\StatisticsController;
+use App\Http\Controllers\ScheduleController;
 use Illuminate\Support\Facades\Auth;
 
 Auth::routes();
@@ -48,6 +49,10 @@ Route::middleware('auth')->group(function () {
      * Statistics
      */
     Route::middleware('auth')->get('/statistics/sold', [StatisticsController::class, 'sold'])->name('statistics.sold');
+    /**
+     * Create schedule
+     */
+    Route::get('administration/create', [ScheduleController::class, 'create']);
 
     Route::get('/profile', function () {
         return view('profile.index');
