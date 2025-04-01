@@ -164,21 +164,35 @@ class CarController extends Controller
      */
     public function index()
     {
-        // Retrieve all cars with their main images
         $cars = Car::with(['images' => function ($query) {
             $query->where('is_main', true);
         }])
-        ->where('availability_status', '!=', 'sold')
+        ->where('availability_status', '!=', 'Sold')
         ->get();
 
-        // Distinct filter values 
-        $makes = Car::select('make')->distinct()->orderBy('make')->pluck('make');
-        $models = Car::select('model')->distinct()->orderBy('model')->pluck('model');
-        $years = Car::select('year')->distinct()->orderByDesc('year')->pluck('year');
+        // Only makes from available cars
+        $makes = Car::where('availability_status', '!=', 'Sold')
+            ->select('make')
+            ->distinct()
+            ->orderBy('make')
+            ->pluck('make');
 
-        // Return the index view with the cars
+        // Optional: you can also filter models/years the same way
+        $models = Car::where('availability_status', '!=', 'Sold')
+            ->select('model')
+            ->distinct()
+            ->orderBy('model')
+            ->pluck('model');
+
+        $years = Car::where('availability_status', '!=', 'Sold')
+            ->select('year')
+            ->distinct()
+            ->orderByDesc('year')
+            ->pluck('year');
+
         return view('car.index', compact('cars', 'makes', 'models', 'years'));
     }
+
 
 
     /**
@@ -244,7 +258,7 @@ class CarController extends Controller
             'sold_price' => $request->sold_price,
             'sold_date' => now(),
         ]);
-        $car->availability_status = 'sold';
+        $car->availability_status = 'Sold';
         $car->save();
 
         return redirect()->route('car.index')->with('success', 'Car has been sold successfully.');
@@ -260,7 +274,9 @@ class CarController extends Controller
     {
         $query = Car::with(['images' => function ($query) {
             $query->where('is_main', true);
-        }]);
+        }])
+        ->where('availability_status', '!=', 'Sold');
+        
     
         if ($request->make) {
             $query->where('make', $request->make);
@@ -293,22 +309,35 @@ class CarController extends Controller
     /**
      * Get Distinct Options
      */
-    public function getOptions(Request $request)
-    {
-        $make = $request->make;
-        $model = $request->model;
+    public function getOptions(Request $request) 
+{
+    $make = $request->make;
+    $model = $request->model;
 
-        if ($make && !$model) {
-            // Si seule la marque est sélectionnée → renvoyer les modèles
-            $models = Car::where('make', $make)->select('model')->distinct()->orderBy('model')->pluck('model');
-            return response()->json(['models' => $models]);
-        }
+    if ($make && !$model) {
+        // Only get models from available cars for this make
+        $models = Car::where('make', $make)
+            ->where('availability_status', '!=', 'Sold')
+            ->select('model')
+            ->distinct()
+            ->orderBy('model')
+            ->pluck('model');
 
-        if ($make && $model) {
-            // Si marque + modèle → renvoyer les années
-            $years = Car::where('make', $make)->where('model', $model)->select('year')->distinct()->orderByDesc('year')->pluck('year');
-            return response()->json(['years' => $years]);
-        }
+        return response()->json(['models' => $models]);
+    }
+
+    if ($make && $model) {
+        // Only get years from available cars for this make and model
+        $years = Car::where('make', $make)
+            ->where('model', $model)
+            ->where('availability_status', '!=', 'Sold')
+            ->select('year')
+            ->distinct()
+            ->orderByDesc('year')
+            ->pluck('year');
+
+        return response()->json(['years' => $years]);
+    }
 
         return response()->json([]);
     }

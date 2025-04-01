@@ -43,7 +43,6 @@ function fetchModels(make) {
     const modelSelected = modelSelect.querySelector('.select-selected');
     const modelInput = modelSelect.querySelector('input');
 
-    // Reset
     modelList.innerHTML = '';
     modelSelected.textContent = 'Models';
     modelInput.value = '';
@@ -56,7 +55,12 @@ function fetchModels(make) {
     fetch(`/api/cars/options?make=${make}`)
         .then(res => res.json())
         .then(data => {
-            data.models.forEach(model => {
+            const uniqueModels = [...new Set(data.models.filter(m => m !== 'Sold'))]; // filter out Sold models
+            console.log(uniqueModels);
+            console.log('====================================');
+            
+
+            uniqueModels.forEach(model => {
                 const li = document.createElement('li');
                 li.dataset.value = model;
                 li.textContent = model;
@@ -64,12 +68,13 @@ function fetchModels(make) {
                     modelSelected.textContent = model;
                     modelInput.value = model;
                     modelList.style.display = 'none';
-                    fetchYears(make, model); 
+                    fetchYears(make, model);
                 });
                 modelList.appendChild(li);
             });
         });
 }
+
 
 
 /**
@@ -90,7 +95,9 @@ function fetchYears(make, model) {
     fetch(`/api/cars/options?make=${make}&model=${model}`)
         .then(res => res.json())
         .then(data => {
-            data.years.forEach(year => {
+            const uniqueYears = [...new Set(data.years.filter(y => y !== 'Sold'))]; // filter out if needed
+
+            uniqueYears.forEach(year => {
                 const li = document.createElement('li');
                 li.dataset.value = year;
                 li.textContent = year;
@@ -103,6 +110,7 @@ function fetchYears(make, model) {
             });
         });
 }
+
 
 
 document.getElementById('model').addEventListener('change', function () {
