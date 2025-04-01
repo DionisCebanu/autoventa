@@ -37,6 +37,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/car/store', [CarController::class, 'store'])->name('car.store');
     Route::get('/car/edit/{id}', [CarController::class, 'edit'])->name('car.edit');
     Route::put('/car/{id}', [CarController::class, 'update'])->name('car.update');
+    Route::get('/car/delete/{id}', [CarController::class, 'destroy'])->name('car.delete');
     Route::get('/profile', function () {
         return view('profile.index');
     });

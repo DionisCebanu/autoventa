@@ -22,7 +22,7 @@
 
 .btn:hover {
     scale: var(--scale-main);
-    color: rgb(24, 25, 97);
+    color: rgb(255, 255, 255);
 }
 
 

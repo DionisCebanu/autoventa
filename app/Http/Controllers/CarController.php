@@ -191,6 +191,34 @@ class CarController extends Controller
         return view('car.show', compact('car'));    
     }
 
+
+    /**
+     * Delete a car
+     */
+    public function destroy($id)
+    {
+        $car = Car::findOrFail($id);
+
+        // Si tu veux supprimer les images associées aussi
+        foreach ($car->images as $image) {
+            // Supprimer le fichier physique si nécessaire
+            if (file_exists(public_path($image->image_path))) {
+                unlink(public_path($image->image_path));
+            }
+            $image->delete();
+        }
+
+        if (auth()->user()->id !== $car->user_id) {
+            abort(403, 'Unauthorized action.');
+        }
+        
+        $car->delete();
+
+        return redirect()->route('car.index')->with('success', 'Car deleted successfully.');
+    }
+
+
+
     /**
      * Filter
      */

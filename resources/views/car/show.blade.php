@@ -9,6 +9,16 @@
                 <a href="/catalog" class="btn-no-bg btn-icon p-10">Back to the Catalog  <i class="fa-solid fa-backward"></i></a>
                     @auth
                         <a href="{{ route('car.edit', $car->id) }}" class="btn btn-icon p-10">Edit This Car <i class="fa-solid fa-pen-to-square"></i></a>
+                        <button class="btn btn-icon p-10" id="delete-btn">Delete This Car <i class="fa-solid fa-trash"></i></button>
+                        <div class="popup-overlay" id="popup-overlay" style="display: none;">
+                            <div class="delete-popup">
+                                <p class="message">Are you sure you want to delete this <span>car</span> ?</p>
+                                <div class="controls">
+                                    <button id="cancel-btn">Cancel</button>
+                                    <a href="{{ route('car.delete', $car->id) }}" id="confirm_btn">Confirm <i class="fa-solid fa-trash"></i></a>
+                                </div>
+                            </div>
+                        </div>
                     @endauth
                 </div>
            <header class="flex gap30">
@@ -202,6 +212,6 @@
     });
 </script>
 
-
+<script src="{{ asset('js/car/confirm-actions.js')}}" defer></script>
 
 @endsection
