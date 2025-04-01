@@ -167,7 +167,9 @@ class CarController extends Controller
         // Retrieve all cars with their main images
         $cars = Car::with(['images' => function ($query) {
             $query->where('is_main', true);
-        }])->get();
+        }])
+        ->where('availability_status', '!=', 'sold')
+        ->get();
 
         // Distinct filter values 
         $makes = Car::select('make')->distinct()->orderBy('make')->pluck('make');
@@ -242,6 +244,8 @@ class CarController extends Controller
             'sold_price' => $request->sold_price,
             'sold_date' => now(),
         ]);
+        $car->availability_status = 'sold';
+        $car->save();
 
         return redirect()->route('car.index')->with('success', 'Car has been sold successfully.');
     }
