@@ -41,4 +41,10 @@ class Car extends Model
     public function images() {
         return $this->hasMany(Image::class);
     }
+
+    public function sale()
+    {
+        return $this->hasOne(SoldCar::class);
+    }
+
 }

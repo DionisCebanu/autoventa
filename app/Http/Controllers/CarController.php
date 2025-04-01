@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Car;
 use App\Models\Image;
+use App\Models\SoldCar;
 use Illuminate\Support\Facades\Storage;
 
 class CarController extends Controller
@@ -211,11 +212,40 @@ class CarController extends Controller
         if (auth()->user()->id !== $car->user_id) {
             abort(403, 'Unauthorized action.');
         }
-        
+
         $car->delete();
 
         return redirect()->route('car.index')->with('success', 'Car deleted successfully.');
     }
+
+    /**
+     * Sell The Car
+     */
+    public function sell(Request $request, $id)
+    {
+        $car = Car::findOrFail($id);
+
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'surname' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'phone' => 'required|string|max:20',
+            'sold_price' => 'required|numeric|min:0',
+        ]);
+
+        SoldCar::create([
+            'car_id' => $car->id,
+            'name' => $request->name,
+            'surname' => $request->surname,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'sold_price' => $request->sold_price,
+            'sold_date' => now(),
+        ]);
+
+        return redirect()->route('car.index')->with('success', 'Car has been sold successfully.');
+    }
+
 
 
 

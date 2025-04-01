@@ -9,6 +9,45 @@
                 <a href="/catalog" class="btn-no-bg btn-icon p-10">Back to the Catalog  <i class="fa-solid fa-backward"></i></a>
                     @auth
                         <a href="{{ route('car.edit', $car->id) }}" class="btn btn-icon p-10">Edit This Car <i class="fa-solid fa-pen-to-square"></i></a>
+                        <button class="btn btn-icon p-10" id="car_sell-btn">Sell This Car <i class="fa-solid fa-money-bill-trend-up"></i></button>
+                
+                        <div class="popup-overlay" id="sell-overlay" style="display:none">
+                            <form action="{{ route('car.sell', $car->id) }}" method="POST" class="form">
+                                @csrf
+                                <div class="form-control">
+                                    <label for="client name">
+                                        Client Name:
+                                    </label>
+                                    <input type="text" name="name" placeholder="Client name" required>
+                                </div>
+                                <div class="form-control">
+                                    <label for="client_surname">
+                                        Client Surname:
+                                    </label>
+                                    <input type="text" name="surname" placeholder="Client surname" required>
+                                </div>
+                                <div class="form-control">
+                                    <label for="client_email">
+                                        Client Email:
+                                    </label>
+                                    <input type="email" name="email" placeholder="Client email" required>
+                                </div>
+                                <div class="form-control">
+                                    <label for="client_email">
+                                        Client Phone:
+                                    </label>
+                                    <input type="text" name="phone" placeholder="Client phone" required>
+                                </div>
+                                <div class="form-control">
+                                    <label for="sold_price">Selling Price:</label>
+                                    <input type="number" name="sold_price" value="{{ $car->price }}" step="0.01" required>
+                                </div>
+                                
+                                <button type="submit" class="btn btn-icon">Confirm Sale <i class="fa-solid fa-circle-check"></i></button>
+                            </form>
+                            <button id="sell-cancel-btn" class="btn btn-icon">Cancel <i class="fa-solid fa-ban"></i></button>
+                        </div>
+
                         <button class="btn btn-icon p-10" id="delete-btn">Delete This Car <i class="fa-solid fa-trash"></i></button>
                         <div class="popup-overlay" id="popup-overlay" style="display: none;">
                             <div class="delete-popup">
