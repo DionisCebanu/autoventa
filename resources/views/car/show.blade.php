@@ -2,6 +2,68 @@
 @section('title', 'Details')
 @section('content')
 
+<div class="popup-overlay" id="booking-overlay">
+  <div class="popup-reservation">
+    <h2>Reserve this Car</h2>
+    <form id="booking-form">
+      
+      <!-- SECTION 1: Car Details -->
+      <section class="form-section">
+        <h3>Car Details</h3>
+        <div class="details-row">
+          <label>Make:</label><span>Toyota</span>
+        </div>
+        <div class="details-row">
+          <label>Model:</label><span>Corolla</span>
+        </div>
+        <div class="details-row">
+          <label>Year:</label><span>2023</span>
+        </div>
+      </section>
+
+      <!-- SECTION 2: Client Details -->
+      <section class="form-section">
+        <h3>Your Information</h3>
+        <div class="form-row">
+          <label for="client-name">Name:</label>
+          <input type="text" id="client-name" name="name" required>
+        </div>
+        <div class="form-row">
+          <label for="client-email">Email:</label>
+          <input type="email" id="client-email" name="email" required>
+        </div>
+        <div class="form-row">
+          <label for="client-phone">Phone:</label>
+          <input type="tel" id="client-phone" name="phone" required>
+        </div>
+      </section>
+
+      <!-- SECTION 3: Date and Time -->
+      <section class="form-section">
+        <h3>Date and Time</h3>
+        <div class="form-row">
+          <label for="booking-date">Choose a date:</label>
+          <input type="date" id="booking-date" name="date" required>
+        </div>
+
+        <div class="form-row time-slots">
+          <label>Available Time Slots:</label>
+          <div class="time-options">
+            <span class="time-button">17:30 - 18:00</span>
+            <span class="time-button">18:00 - 18:30</span>
+            <span class="time-button">18:30 - 19:00</span>
+          </div>
+        </div>
+      </section>
+
+      <div class="form-actions">
+          <button class="btn btn-no-bg" type="button" id="close-popup">Cancel</button>
+          <button class="btn" type="submit">Confirm</button>
+      </div>
+    </form>
+  </div>
+</div>
+
 
  <main class="flex-center">
         <div class="structure">
@@ -112,6 +174,9 @@
                         </div>
                         <div class="price">
                             <span>{{ number_format($car->price, 2) }} (£)</span>
+                        </div>
+                        <div>
+                            <button class="btn btn-no-bg" id="reserve-btn"> Reserve</button>
                         </div>
                         <div class="line"></div>
                     </header>
@@ -252,5 +317,6 @@
 </script>
 
 <script src="{{ asset('js/car/confirm-actions.js')}}" defer></script>
+<script src="{{ asset('js/car/reservation.js')}}" defer></script>
 
 @endsection

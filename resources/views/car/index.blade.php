@@ -80,6 +80,7 @@
                         <div class="card-car-img">
                         <img src="{{ $car->images->first() ? $car->images->first()->image_path : asset('img/gallery/collection/default-image/default.jpg') }}" 
                             alt="{{ $car->make }} {{ $car->model }}">
+
                             <div class="type-car">
                                 <p>{{ $car->type }}</p>
                             </div>

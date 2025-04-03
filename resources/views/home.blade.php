@@ -518,4 +518,8 @@ arrowBtns.forEach(btn => {
 
 </script>
 
+
+
+<script type="module" src="{{ asset('js/classes/initSlider.js')}}" defer></script>
+
 @endsection
