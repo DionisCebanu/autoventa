@@ -60,6 +60,10 @@
     border: 4px solid var(--btn-no-bg-color);
 }
 
+.btn-no-bg:hover {
+    color: var(--btn-no-bg-color);
+}
+
 /*btn with icon*/
 .btn-icon {
     display: flex;

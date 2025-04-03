@@ -62,10 +62,6 @@
     margin-bottom: 0.3rem;
   }
   
-  .popup-reservation .form-row span {
-    padding: 0.4rem 0;
-  }
-  
   .popup-reservation input[type="text"],
   .popup-reservation input[type="email"],
   .popup-reservation input[type="tel"],
@@ -84,16 +80,17 @@
   }
   
   .popup-reservation .time-button {
-    padding: 0.4rem 0.8rem;
+    padding: 10px;
     border: 1px solid #aaa;
     border-radius: 6px;
-    background: #f5f5f5;
     cursor: pointer;
+    background: #7589ac;
+    color: white;
     transition: background 0.2s ease;
   }
   
   .popup-reservation .time-button:hover {
-    background: #ddd;
+    background: #4d5c75;
   }
   
   .popup-reservation .time-button.active {
