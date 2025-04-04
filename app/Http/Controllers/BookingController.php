@@ -8,6 +8,15 @@ use Illuminate\Support\Facades\Storage;
 
 class BookingController extends Controller
 {
+
+
+    /**
+     * Perform your actions (schedule, bookings, etc)
+     */
+    public function home() {
+        return view('administration.bookings.home');
+    }
+
     /**
      * Get available solts
      */

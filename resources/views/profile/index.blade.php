@@ -18,13 +18,15 @@
             <h3>Mihail Sidorenco</h3>
         </article>
         <div class="profile-links">
-            <div class="link">
-                <div class="link-item">
-                    <i class="fa-solid fa-calendar"></i>
-                    <p>Bookings</p>
+            <a href="/bookings/home">
+                <div class="link">
+                    <div class="link-item">
+                        <i class="fa-solid fa-calendar"></i>
+                        <p>Bookings</p>
+                    </div>
+                    <img src="https://img.icons8.com/?size=100&id=98971&format=png&color=000000" alt="arrow right">
                 </div>
-                <img src="https://img.icons8.com/?size=100&id=98971&format=png&color=000000" alt="arrow right">
-            </div>
+            </a>
             <div class="link">
                 <div class="link-item">
                     <i class="fa-solid fa-wallet"></i>

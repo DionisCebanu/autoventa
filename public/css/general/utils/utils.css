@@ -219,6 +219,12 @@
     width: 80%;
 }
 
+.grid2{
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 20px;
+}
+
 
 @media only screen and (max-width: 600px) {
     .structure {

@@ -63,6 +63,11 @@ Route::middleware('auth')->group(function () {
      */
     Route::get('/bookings/list', [BookingController::class, 'listBookings'])->name('administration.bookings');
 
+    /**
+     * Bookings HOME (CHOOSE ACTIONS)
+     */
+    Route::get('/bookings/home', [BookingController::class, 'home'])->name('administration.bookings');
+
 
 
     Route::get('/profile', function () {

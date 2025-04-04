@@ -1,3 +1,4 @@
+@import url(../actions-selector/actions.css);
 .admin-bookings {
     padding: 3rem 2rem;
     background: linear-gradient(120deg, #1e3c72, #b5b5b5);
