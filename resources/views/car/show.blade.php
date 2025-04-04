@@ -5,64 +5,66 @@
 <div class="popup-overlay" id="booking-overlay">
   <div class="popup-reservation">
     <h2>Reserve this Car</h2>
-    <form id="booking-form">
-      
-      <!-- SECTION 1: Car Details -->
-      <section class="form-section">
-        <h3>Car Details</h3>
-        <div class="details-row">
-          <label>Make:</label><span>{{ $car->make }}</span>
-        </div>
-        <div class="details-row">
-          <label>Model:</label><span>{{ $car->model }}</span>
-        </div>
-        <div class="details-row">
-          <label>Year:</label><span>{{ $car->year }}</span>
-        </div>
-      </section>
+    <form id="booking-form" method="POST" action="{{ route('booking.store') }}">
+        @csrf
+        
+        <!-- SECTION 1: Car Details -->
+        <section class="form-section">
+            <h3>Car Details</h3>
+            <div class="details-row">
+            <label>Make:</label><span>{{ $car->make }}</span>
+            </div>
+            <div class="details-row">
+            <label>Model:</label><span>{{ $car->model }}</span>
+            </div>
+            <div class="details-row">
+            <label>Year:</label><span>{{ $car->year }}</span>
+            </div>
+        </section>
 
-      <!-- SECTION 2: Client Details -->
-      <section class="form-section">
-        <h3>Your Information</h3>
-        <div class="form-row">
-          <label for="client-name">Name:</label>
-          <input type="text" id="client-name" name="name" required>
-        </div>
-        <div class="form-row">
-          <label for="client-email">Email:</label>
-          <input type="email" id="client-email" name="email" required>
-        </div>
-        <div class="form-row">
-          <label for="client-phone">Phone:</label>
-          <input type="tel" id="client-phone" name="phone" required>
-        </div>
-      </section>
+        <!-- SECTION 2: Client Details -->
+        <section class="form-section">
+            <h3>Your Information</h3>
+            <div class="form-row">
+            <label for="client-name">Name:</label>
+            <input type="text" id="client-name" name="name" required>
+            </div>
+            <div class="form-row">
+            <label for="client-email">Email:</label>
+            <input type="email" id="client-email" name="email" required>
+            </div>
+            <div class="form-row">
+            <label for="client-phone">Phone:</label>
+            <input type="tel" id="client-phone" name="phone" required>
+            </div>
+        </section>
 
-      <!-- SECTION 3: Date and Time -->
-      <section class="form-section">
-        <h3>Date and Time</h3>
-        <div class="form-row">
-          <label for="booking-date">Choose a date:</label>
-          <input type="date" id="booking-date" name="date" required>
+        <!-- SECTION 3: Date and Time -->
+        <section class="form-section">
+            <h3>Date and Time</h3>
+            <div class="form-row">
+            <label for="booking-date">Choose a date:</label>
+            <input type="date" id="booking-date" name="date" required>
+            </div>
+
+            <div class="form-row time-slots">
+            <label>Available Time Slots:</label>
+            <div class="time-options">
+                    <!--Dynamic Time Options-->
+            </div>
+            </div>
+
+            <input type="hidden" name="car_id" value="{{ $car->id }}">
+            <input type="hidden" name="start_time" id="selected-start-time">
+
+        </section>
+
+        <div class="form-actions">
+            <button class="btn btn-no-bg" type="button" id="close-popup">Cancel</button>
+            <button class="btn" type="submit">Confirm</button>
         </div>
-
-        <div class="form-row time-slots">
-          <label>Available Time Slots:</label>
-          <div class="time-options">
-                <!--Dynamic Time Options-->
-          </div>
-        </div>
-        <input type="hidden" name="start_time" id="selected-start-time">
-        <input type="hidden" name="end_time" id="selected-end-time">
-
-      </section>
-
-      <div class="form-actions">
-          <button class="btn btn-no-bg" type="button" id="close-popup">Cancel</button>
-          <button class="btn" type="submit">Confirm</button>
-      </div>
-    </form>
-  </div>
+        </form>
+    </div>
 </div>
 
 

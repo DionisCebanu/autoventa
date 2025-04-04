@@ -3,10 +3,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Schedule;
+use App\Models\Booking;
 use Illuminate\Support\Facades\Storage;
 
 class BookingController extends Controller
 {
+    /**
+     * Get available solts
+     */
     public function getAvailableSlots(Request $request)
     {
         $date = $request->query('date');
@@ -27,6 +31,25 @@ class BookingController extends Controller
     
         return response()->json($slots);
     }    
+
+    /**
+     * Store the booking
+     */
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'car_id' => 'required|exists:cars,id',
+            'name' => 'required|string|max:100',
+            'email' => 'required|email',
+            'phone' => 'required|string|max:30',
+            'date' => 'required|date',
+            'start_time' => 'required|date_format:H:i',
+        ]);
+
+        Booking::create($validated);
+
+        return redirect()->back()->with('success', 'Booking confirmed!');
+    }
 }
 
 

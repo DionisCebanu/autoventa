@@ -109,6 +109,12 @@ Route::get('/car/{id}', [CarController::class, 'show'])->name('car.show');
  */
 Route::get('/api/available-slots', [BookingController::class, 'getAvailableSlots']);
 
+/**
+ * Create the booking
+ */
+Route::post('/booking/store', [BookingController::class, 'store'])->name('booking.store');
+
+
 
 
 /* Route::get('/car', function () {
