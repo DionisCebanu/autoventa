@@ -15,4 +15,10 @@ class Booking extends Model
         'date',
         'start_time',
     ];
+
+    public function car()
+    {
+        return $this->belongsTo(\App\Models\Car::class);
+    }
+
 }

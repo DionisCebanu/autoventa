@@ -52,10 +52,17 @@ Route::middleware('auth')->group(function () {
      * Statistics
      */
     Route::middleware('auth')->get('/statistics/sold', [StatisticsController::class, 'sold'])->name('statistics.sold');
+
     /**
      * Create schedule
      */
     Route::get('/schedule/create', [ScheduleController::class, 'create']);
+
+    /**
+     * Booking list
+     */
+    Route::get('/bookings/list', [BookingController::class, 'listBookings'])->name('administration.bookings');
+
 
 
     Route::get('/profile', function () {

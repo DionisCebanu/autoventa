@@ -93,6 +93,16 @@ class BookingController extends Controller
 
         return redirect()->back()->with('success', 'Booking confirmed!');
     }
+
+    /**
+     * List the bookings
+     */
+    public function listBookings()
+    {
+        $bookings = Booking::with('car')->latest()->get();
+
+        return view('administration.bookings.index', compact('bookings'));
+    }
 }
 
 
