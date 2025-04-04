@@ -11,13 +11,13 @@
       <section class="form-section">
         <h3>Car Details</h3>
         <div class="details-row">
-          <label>Make:</label><span>Toyota</span>
+          <label>Make:</label><span>{{ $car->make }}</span>
         </div>
         <div class="details-row">
-          <label>Model:</label><span>Corolla</span>
+          <label>Model:</label><span>{{ $car->model }}</span>
         </div>
         <div class="details-row">
-          <label>Year:</label><span>2023</span>
+          <label>Year:</label><span>{{ $car->year }}</span>
         </div>
       </section>
 
@@ -49,11 +49,12 @@
         <div class="form-row time-slots">
           <label>Available Time Slots:</label>
           <div class="time-options">
-            <span class="time-button">17:30 - 18:00</span>
-            <span class="time-button">18:00 - 18:30</span>
-            <span class="time-button">18:30 - 19:00</span>
+                <!--Dynamic Time Options-->
           </div>
         </div>
+        <input type="hidden" name="start_time" id="selected-start-time">
+        <input type="hidden" name="end_time" id="selected-end-time">
+
       </section>
 
       <div class="form-actions">

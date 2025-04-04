@@ -98,6 +98,11 @@
     color: white;
     border-color: #007BFF;
   }
+
+  .popup-reservation .time-button.selected {
+        background: #db8b44;
+        border: none;
+    }
   
   .popup-reservation .form-actions {
     display: flex;

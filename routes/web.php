@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\StatisticsController;
 use App\Http\Controllers\ScheduleController;
+use App\Http\Controllers\BookingController;
 use Illuminate\Support\Facades\Auth;
 
 Auth::routes();
@@ -101,6 +102,13 @@ Route::get('/api/cars/options', [CarController::class, 'getOptions'])->name('car
  * Car Show
  */
 Route::get('/car/{id}', [CarController::class, 'show'])->name('car.show');
+
+
+/**
+ * Booking Available Slots
+ */
+Route::get('/api/available-slots', [BookingController::class, 'getAvailableSlots']);
+
 
 
 /* Route::get('/car', function () {
