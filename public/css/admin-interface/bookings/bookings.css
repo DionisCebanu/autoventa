@@ -1,0 +1,79 @@
+.admin-bookings {
+    padding: 3rem 2rem;
+    background: linear-gradient(120deg, #1e3c72, #b5b5b5);
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    color: #fff;
+}
+
+.admin-bookings h2 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 2.5rem;
+    color: #ffffff;
+    text-shadow: 0 0 5px #0005;
+}
+
+.admin-bookings .booking-card {
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    backdrop-filter: blur(16px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.admin-bookings .booking-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.admin-bookings .booking-info p {
+    margin: 0.4rem 0;
+    font-size: 1rem;
+    color: #f0f0f0;
+}
+
+.admin-bookings .booking-info strong {
+    color: #fff;
+    font-weight: 600;
+}
+
+.admin-bookings .booking-actions {
+    margin-top: 1rem;
+}
+
+.admin-bookings .btn {
+    background: linear-gradient(135deg, #00c6ff, #0072ff);
+    color: #fff;
+    padding: 0.6rem 1.6rem;
+    border-radius: 30px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s ease;
+}
+
+.admin-bookings .btn:hover {
+    background: linear-gradient(135deg, #0072ff, #00c6ff);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 30px rgba(0, 0, 0, 0.6);
+}
+
+.admin-bookings .text-muted {
+    color: #ccc;
+    font-style: italic;
+    font-size: 0.95rem;
+}
+
+.admin-bookings .no-bookings {
+    text-align: center;
+    font-style: italic;
+    font-size: 1.2rem;
+    margin-top: 4rem;
+    color: #fff;
+    opacity: 0.8;
+}
