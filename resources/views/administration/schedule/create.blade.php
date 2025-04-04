@@ -42,21 +42,31 @@
     const disponibilities = {}; // Format: { '2025-04-01': [ { start, end }, ... ] }
 
     addSlotBtn.addEventListener('click', () => {
-    const date = datePicker.value;
-    const start = startTime.value;
-    const end = endTime.value;
+        const date = datePicker.value;
+        const start = startTime.value;
+        const end = endTime.value;
 
-    if (!date || !start || !end) {
-        alert('Please select a date and valid time range.');
-        return;
-    }
+        if (!date || !start || !end) {
+            alert('Please select a date and valid time range.');
+            return;
+        }
 
-    if (!disponibilities[date]) disponibilities[date] = [];
-    disponibilities[date].push({ start, end });
+        if (!disponibilities[date]) disponibilities[date] = [];
 
-    renderDisponibilities();
-    startTime.value = '';
-    endTime.value = '';
+        // Add this to prevent duplicates
+        if (disponibilities[date].some(slot => slot.start === start && slot.end === end)) {
+            alert('This time slot already exists.');
+            return;
+        }
+
+        disponibilities[date].push({ start, end });
+
+        console.log('✅ Slot added:', { date, start, end }); // Add this
+        console.log('✅ Current disponibilities:', disponibilities); // Add this
+
+        renderDisponibilities();
+        startTime.value = '';
+        endTime.value = '';
     });
 
     function renderDisponibilities() {
@@ -83,10 +93,46 @@
     }
 
 
-    saveBtn.addEventListener('click', () => {
-    console.log('Disponibility Saved:', JSON.stringify(disponibilities, null, 2));
-    alert('Disponibility saved! Check the console for the JSON result.');
+    saveBtn.addEventListener('click', (e) => {
+        e.preventDefault(); // 🛑 This prevents the page from reloading/resetting
+
+        const payload = [];
+
+        for (const [date, slots] of Object.entries(disponibilities)) {
+            slots.forEach(slot => {
+                payload.push({
+                    date: date,
+                    start_time: slot.start,
+                    end_time: slot.end
+                });
+            });
+        }
+
+        fetch('/schedule/save', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            },
+            body: JSON.stringify({ schedule: payload })
+        })
+        .then(async res => {
+            const text = await res.text();
+            try {
+                const data = JSON.parse(text);
+                let message = '✅ Schedule saved successfully!\n\n';
+                payload.foreach(entry => {
+                    message += `📅 ${entry.date}: ${entry.start_time} – ${entry.end_time}\n`;
+                });
+                alert(message);
+            } catch (err) {
+            }
+        })
+        .catch(err => {
+            console.error(err);
+        });
     });
+
 
   </script>
 

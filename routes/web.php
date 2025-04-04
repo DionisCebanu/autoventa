@@ -34,6 +34,8 @@ Route::middleware('auth')->group(function () {
 // Route to handle form submission and store the car data
 Route::post('/car/store', [CarController::class, 'store'])->name('car.store'); */
 
+Route::post('/schedule/save', [ScheduleController::class, 'save'])->middleware('auth');
+
 Route::middleware('auth')->group(function () {
     Route::get('/car/create', [CarController::class, 'create'])->name('car.create');
     Route::post('/car/store', [CarController::class, 'store'])->name('car.store');
@@ -52,7 +54,8 @@ Route::middleware('auth')->group(function () {
     /**
      * Create schedule
      */
-    Route::get('administration/create', [ScheduleController::class, 'create']);
+    Route::get('/schedule/create', [ScheduleController::class, 'create']);
+
 
     Route::get('/profile', function () {
         return view('profile.index');
