@@ -5,6 +5,7 @@
 <section class="bookings-page">
     <div id="custom-datepicker" class="calendar-grid"></div>
     <div class="calendar-instructions">Click a date to see bookings.</div>
+    <div class="calendar-instructions">Booked Dates are marked with ✔️</div>
     <div class="admin-bookings" id="booking-results">
         <h2>📘 All Bookings</h2>
     
