@@ -1,8 +1,11 @@
 @import url(../actions-selector/actions.css);
 @import url(calendar/calendar.css);
+
+.bookings-page {
+    background: linear-gradient(120deg, #1e3c72, #b5b5b5);
+}
 .admin-bookings {
     padding: 3rem 2rem;
-    background: linear-gradient(120deg, #1e3c72, #b5b5b5);
     font-family: 'Poppins', sans-serif;
     min-height: 100vh;
     color: #fff;

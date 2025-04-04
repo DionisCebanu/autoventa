@@ -1,25 +1,68 @@
-.calendar-grid {
+/* Calendar grid layout */
+#custom-datepicker {
     display: grid;
+    width: 90%;
+    margin: 0 auto;
     grid-template-columns: repeat(7, 1fr);
-    gap: 10px;
-    margin-top: 20px;
+    gap: 12px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+    margin-top: 30px;
+    font-family: 'Segoe UI', sans-serif;
   }
+  
+  /* Individual day box */
   .calendar-day {
-    padding: 10px;
-    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+    border: 2px solid transparent;
+    padding: 16px;
     text-align: center;
+    font-weight: 500;
+    font-size: 16px;
+    border-radius: 12px;
     cursor: pointer;
+    transition: all 0.2s ease-in-out;
     position: relative;
-    border-radius: 6px;
+    user-select: none;
   }
+  
   .calendar-day:hover {
-    background: #f2f2f2;
+    background-color: #e8f0fe;
+    border-color: #4285f4;
+    box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.2);
   }
+  
+  /* Booked day mark */
   .calendar-day.booked::after {
     content: '✔️';
     position: absolute;
-    top: 4px;
-    right: 6px;
+    top: 8px;
+    right: 10px;
     font-size: 14px;
+    color: #34a853;
+  }
+  
+  /* Highlight today's date (optional) */
+  .calendar-day.today {
+    background-color: #fff8e1;
+    border-color: #fbc02d;
+  }
+  
+  /* Calendar instructions */
+  .calendar-instructions {
+    margin-top: 16px;
+    font-size: 15px;
+    color: #555;
+    font-style: italic;
+    text-align: center;
+    background: #f5f5f5;
+    padding: 10px 16px;
+    border-radius: 8px;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
   }
   
