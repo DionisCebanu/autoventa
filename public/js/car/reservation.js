@@ -39,26 +39,22 @@ document.getElementById('booking-date').addEventListener('change', function () {
             }
 
             slots.forEach(slot => {
-                const start = slot.start;
-                const end = slot.end;
-                const intervalButtons = generateIntervalButtons(start, end);
+                const time = slot.start;
             
-                intervalButtons.forEach(time => {
-                    const btn = document.createElement('span');
-                    btn.classList.add('time-button');
-                    btn.textContent = time;
-                    btn.dataset.time = time;
+                const btn = document.createElement('span');
+                btn.classList.add('time-button');
+                btn.textContent = time;
+                btn.dataset.time = time;
             
-                    btn.addEventListener('click', () => {
-                        document.querySelectorAll('.time-button').forEach(b => b.classList.remove('selected'));
-                        btn.classList.add('selected');
-            
-                        document.getElementById('selected-start-time').value = time;
-                    });
-            
-                    timeOptionsContainer.appendChild(btn);
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.time-button').forEach(b => b.classList.remove('selected'));
+                    btn.classList.add('selected');
+                    document.getElementById('selected-start-time').value = time;
                 });
+            
+                timeOptionsContainer.appendChild(btn);
             });
+            
             
         })
         .catch(err => {
@@ -67,27 +63,3 @@ document.getElementById('booking-date').addEventListener('change', function () {
         });
 });
 
-/**
- * 
- * Funtion to generate intervals each 30 minutes
- */
-function generateIntervalButtons(start, end) {
-    const intervals = [];
-
-    let [startHour, startMinute] = start.split(':').map(Number);
-    let [endHour, endMinute] = end.split(':').map(Number);
-
-    const pad = n => n.toString().padStart(2, '0');
-
-    while (startHour < endHour || (startHour === endHour && startMinute <= endMinute)) {
-        intervals.push(`${pad(startHour)}:${pad(startMinute)}`);
-
-        startMinute += 30;
-        if (startMinute >= 60) {
-            startMinute = 0;
-            startHour += 1;
-        }
-    }
-
-    return intervals;
-}
