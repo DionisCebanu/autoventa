@@ -104,6 +104,25 @@ class BookingController extends Controller
     }
 
     /**
+     * Get bookings by date
+     */
+    public function getBookingsByDate(Request $request)
+    {
+        $date = $request->query('date');
+
+        if (!$date) {
+            return response()->json(['error' => 'Date is required'], 400);
+        }
+
+        $bookings = Booking::with('car')
+            ->whereDate('date', $date)
+            ->orderBy('start_time')
+            ->get();
+
+        return response()->json($bookings);
+    }
+
+    /**
      * List the bookings
      */
     public function listBookings()
@@ -112,6 +131,20 @@ class BookingController extends Controller
 
         return view('administration.bookings.index', compact('bookings'));
     }
+
+    /**
+     * Get Booked dates
+     */
+    public function getBookedDates()
+    {
+        $dates = Booking::select('date')
+            ->distinct()
+            ->orderBy('date')
+            ->pluck('date');
+
+        return response()->json($dates);
+    }
+
 }
 
 

@@ -64,6 +64,17 @@ Route::middleware('auth')->group(function () {
     Route::get('/bookings/list', [BookingController::class, 'listBookings'])->name('administration.bookings');
 
     /**
+     * Bookings by date
+     */
+    Route::get('/api/bookings/by-date', [BookingController::class, 'getBookingsByDate']);
+
+    /**
+     * Get Booked Dates
+     */
+    Route::get('/api/bookings/dates', [BookingController::class, 'getBookedDates']);
+
+
+    /**
      * Bookings HOME (CHOOSE ACTIONS)
      */
     Route::get('/bookings/home', [BookingController::class, 'home'])->name('administration.bookings');
