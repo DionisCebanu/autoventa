@@ -210,6 +210,24 @@ class CarController extends Controller
 
 
     /**
+     * Show Promoted Listings
+     */
+    public function promotedList()
+    {
+        $promotedCars = Car::with(['images' => function ($query) {
+            $query->where('is_main', true);
+        }])
+        ->where('availability_status', '!=', 'Sold')
+        ->orderByDesc('created_at') // or any custom 'promoted' flag in the future
+        ->take(4)
+        ->get();
+
+        return view('home', compact('promotedCars'));
+    }
+
+
+
+    /**
      * Delete a car
      */
     public function destroy($id)

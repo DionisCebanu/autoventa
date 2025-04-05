@@ -104,6 +104,8 @@ Route::get('/', function () {
     return view('home');
 });
 
+Route::get('/', [CarController::class, 'promotedList'])->name('home');
+
 Route::get('/about', function () {
     return view('about.index');
 });

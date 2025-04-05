@@ -5,64 +5,37 @@
 <!--https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_slideshow-->
 <section class="carousel-main-section">
     <div class="carousel-container">
-        <div class="mySlides fade">
-            <img src="{{asset('img/gallery/collection/bmw-m5.jpg') }}" alt="bmw m5" style="width:100%">
-
+        @foreach ($promotedCars as $index => $car)
+            <div class="mySlides fade">
+                <img src="{{ $car->images->first() ? asset($car->images->first()->image_path) : asset('img/gallery/collection/default-image/default.jpg') }}" 
+                    alt="{{ $car->make }} {{ $car->model }}" style="width:100%">
                 <div class="info-product-promoted">
-                        <div class="promoted-product__title typewriter">
-                            <h1>BMW M5 Competition</h1>
-                        </div>
-                        <div class="promoted-product__description typewriter">
-                            <p>New arrival in our collection</p>
-                        </div>
-                        <div class="header-box__buttons"><a href="" class="btn">Check the offers</a>
-                            <a href="#reserve-sec" class="btn btn-no-bg">Reserve Now</a>
-                        </div>
-
+                    <div class="promoted-product__title typewriter">
+                        <h1>{{ $car->make }} {{ $car->model }}</h1>
+                    </div>
+                    <div class="promoted-product__description typewriter">
+                        <p>Just arrived! {{ $car->make }} {{ $car->model }} now available</p>
+                    </div>
+                    <div class="header-box__buttons">
+                        <a href="/catalog" class="btn">Check the offers</a>
+                        <a href="/car/{{ $car->id }}" class="btn btn-no-bg">Reserve Now</a>
+                    </div>
                 </div>
             </div>
+        @endforeach
 
-        <div class="mySlides fade">
-          <img src="{{asset('img/gallery/collection/audi-rs7.jpg') }}" alt="audi rs7" style="width:100%">
-          <div class="info-product-promoted">
-            <div class="promoted-product__title typewriter">
-                <h1>Audi RS7</h1>
-            </div>
-            <div class="promoted-product__description typewriter">
-                <p>Limited offer! Take Your Audi today!</p>
-            </div>
-            <div class="header-box__buttons"><a href="" class="btn">Check the offers</a>
-                <a href="#reserve-sec" class="btn btn-no-bg">Reserve Now</a>
-            </div>
-        </div>
-        </div>
-
-        <div class="mySlides fade">
-          <img src="{{asset('img/gallery/collection/mercedes-benz-amg-gt.jpg') }}" alt="mercedes benz amg gt" style="width:100%">
-          <div class="info-product-promoted typewriter">
-            <div class="promoted-product__title">
-                <h1>Mercedes Benz Amg GT</h1>
-            </div>
-            <div class="promoted-product__description typewriter">
-                <p>The fastest car in the UK. Be proud of yourself</p>
-            </div>
-            <div class="header-box__buttons"><a href="" class="btn">Check the offers</a>
-                <a href="#reserve-sec" class="btn btn-no-bg">Reserve Now</a>
-            </div>
-        </div>
-        </div>
         <a class="prev">❮</a>
         <a class="next">❯</a>
-
     </div>
-    <br>
 
+    <br>
     <div style="text-align:center">
-        <span class="dot" onclick="currentSlide(1)"></span>
-        <span class="dot" onclick="currentSlide(2)"></span>
-        <span class="dot" onclick="currentSlide(3)"></span>
+        @foreach ($promotedCars as $index => $car)
+            <span class="dot" onclick="currentSlide({{ $index + 1 }})"></span>
+        @endforeach
     </div>
 </section>
+
 <section class="latest-arrivals flex-center">
     <div class="structure">
         <div class="latest-arrivals-title block">
