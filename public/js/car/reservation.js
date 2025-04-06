@@ -63,3 +63,87 @@ document.getElementById('booking-date').addEventListener('change', function () {
         });
 });
 
+
+document.querySelectorAll(".next-step").forEach((btn) => {
+    btn.addEventListener("click", () => {
+        const currentSection = btn.closest(".form-section");
+        const nextId = btn.dataset.next;
+        const nextSection = document.getElementById(nextId);
+
+        if (nextSection) {
+            currentSection.style.display = "none";
+            nextSection.style.display = "block";
+        }
+    });
+});
+
+document.querySelectorAll(".prev-step").forEach((btn) => {
+    btn.addEventListener("click", () => {
+        const currentSection = btn.closest(".form-section");
+        const prevId = btn.dataset.prev;
+        const prevSection = document.getElementById(prevId);
+
+        if (prevSection) {
+            currentSection.style.display = "none";
+            prevSection.style.display = "block";
+        }
+    });
+});
+
+
+
+/**
+ * Level Steps
+ */
+
+function updateStepBar(currentId) {
+    document.querySelectorAll(".step").forEach(step => {
+        step.classList.remove("active");
+        if (step.dataset.step === currentId) {
+            step.classList.add("active");
+        }
+    });
+}
+
+document.querySelectorAll(".next-step").forEach((btn) => {
+    btn.addEventListener("click", () => {
+        const currentSection = btn.closest(".form-section");
+        const nextId = btn.dataset.next;
+        const nextSection = document.getElementById(nextId);
+
+        if (nextSection) {
+            currentSection.classList.add("hidden-step");
+            nextSection.classList.remove("hidden-step");
+            updateStepBar(nextId);
+        }
+    });
+});
+
+document.querySelectorAll(".prev-step").forEach((btn) => {
+    btn.addEventListener("click", () => {
+        const currentSection = btn.closest(".form-section");
+        const prevId = btn.dataset.prev;
+        const prevSection = document.getElementById(prevId);
+
+        if (prevSection) {
+            currentSection.classList.add("hidden-step");
+            prevSection.classList.remove("hidden-step");
+            updateStepBar(prevId);
+        }
+    });
+});
+
+function updateStepBar(currentId) {
+    const steps = Array.from(document.querySelectorAll(".progress-step"));
+    const lines = document.querySelectorAll(".progress-line");
+
+    let activeIndex = steps.findIndex(step => step.dataset.step === currentId);
+
+    steps.forEach((step, index) => {
+        step.classList.toggle("active", index <= activeIndex);
+    });
+
+    lines.forEach((line, index) => {
+        line.classList.toggle("active", index < activeIndex);
+    });
+}

@@ -8,8 +8,18 @@
     <form id="booking-form" method="POST" action="{{ route('booking.store') }}">
         @csrf
         
+        <!--Level Bar-->
+        <div class="step-wrapper">
+            <div class="progress-step active" data-step="car-details">1</div>
+            <div class="progress-line"></div>
+            <div class="progress-step" data-step="client-details">2</div>
+            <div class="progress-line"></div>
+            <div class="progress-step" data-step="time-details">3</div>
+        </div>
+
+
         <!-- SECTION 1: Car Details -->
-        <section class="form-section">
+        <section class="form-section" id="car-details" style="display: block;">
             <h3>Car Details</h3>
             <div class="details-row">
             <label>Make:</label><span>{{ $car->make }}</span>
@@ -20,10 +30,13 @@
             <div class="details-row">
             <label>Year:</label><span>{{ $car->year }}</span>
             </div>
+            <div class="control-sections">
+                <button type="button" class="btn next-step" data-next="client-details">Next Step</button>
+            </div>
         </section>
 
         <!-- SECTION 2: Client Details -->
-        <section class="form-section">
+        <section class="form-section" id="client-details" style="display: none;">
             <h3>Your Information</h3>
             <div class="form-row">
             <label for="client-name">Name:</label>
@@ -37,10 +50,14 @@
             <label for="client-phone">Phone:</label>
             <input type="tel" id="client-phone" name="phone" required>
             </div>
+            <div class="control-sections">
+                <button type="button" class="btn prev-step" data-prev="car-details">Previous</button>
+                <button type="button" class="btn next-step" data-next="time-details">Next Step</button>
+            </div>
         </section>
 
         <!-- SECTION 3: Date and Time -->
-        <section class="form-section">
+        <section class="form-section" id="time-details" style="display: none;">
             <h3>Date and Time</h3>
             <div class="form-row">
             <label for="booking-date">Choose a date:</label>
@@ -56,12 +73,14 @@
 
             <input type="hidden" name="car_id" value="{{ $car->id }}">
             <input type="hidden" name="start_time" id="selected-start-time">
-
+            <div class="control-sections">
+                <button type="button" class="btn prev-step" data-prev="client-details">Previous</button>
+                <button class="btn" type="submit">Confirm</button>
+            </div>
         </section>
-
         <div class="form-actions">
             <button class="btn btn-no-bg" type="button" id="close-popup">Cancel</button>
-            <button class="btn" type="submit">Confirm</button>
+         
         </div>
         </form>
     </div>

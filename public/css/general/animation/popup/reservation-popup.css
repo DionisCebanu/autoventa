@@ -110,6 +110,12 @@
     gap: 1rem;
     margin-top: 2rem;
   }
+
+  .popup-reservation .control-sections {
+      margin-top: 10px;
+      display: flex;
+      justify-content: space-between;
+  }
   
   .popup-reservation .button {
     padding: 0.6rem 1.2rem;
@@ -125,7 +131,50 @@
   }
   
   .popup-reservation .cancel-button {
-    background-color: #dc3545;
+    background-color: var(--blue);
     color: white;
+  }
+  
+
+
+  /*Step Bar level*/
+  .step-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 400px;
+    margin: 0 auto 2rem;
+  }
+  
+  .progress-step {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #ddd;
+    color: #333;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+    transition: background 0.3s, color 0.3s;
+  }
+  
+  .progress-step.active {
+    background: var(--blue);
+    color: white;
+  }
+  
+  .progress-line {
+    flex: 1;
+    height: 4px;
+    background: #ddd;
+    margin: 0 5px;
+    z-index: 1;
+  }
+  
+  .progress-line.active {
+    background: var(--blue);
   }
   
