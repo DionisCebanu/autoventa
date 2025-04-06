@@ -197,7 +197,7 @@
                         <div class="price">
                             <span>{{ number_format($car->price, 2) }} (£)</span>
                         </div>
-                        <div>
+                        <div class="reserve-btn_container">
                             <button class="btn btn-no-bg" id="reserve-btn"> Reserve</button>
                         </div>
                         <div class="line"></div>

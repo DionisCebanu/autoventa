@@ -17,6 +17,17 @@
 
 }
 
+/*Reserve button*/
+.reserve-btn_container button {
+    width: 50%;
+}
+
+@media screen and (max-width: 992px) {
+.reserve-btn_container button {
+    width: 100%;
+}
+}
+
 
 
 

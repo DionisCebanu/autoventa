@@ -47,6 +47,7 @@
     margin-bottom: 0.5rem;
     font-size: 1.2rem;
     color: #333;
+    font-weight: bold;
     border-bottom: 1px solid #eee;
     padding-bottom: 0.3rem;
   }
@@ -59,6 +60,7 @@
   
   .popup-reservation .form-row label {
     font-weight: bold;
+    color: var(--blue);
     margin-bottom: 0.3rem;
   }
   
@@ -133,6 +135,24 @@
   .popup-reservation .cancel-button {
     background-color: var(--blue);
     color: white;
+  }
+
+  /* Buttons */
+  .control-sections button,
+  .form-actions button {
+    padding: 10px;
+  }
+
+  .prev-step {
+    background: none;
+    color: var(--btn-no-bg-color);
+    border: 4px solid transparent;
+    border-radius: 10px;
+    border: 4px solid var(--btn-no-bg-color);
+  }
+
+  .prev-step:hover {
+    color: var(--btn-no-bg-color);
   }
   
 

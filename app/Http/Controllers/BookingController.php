@@ -105,7 +105,16 @@ class BookingController extends Controller
 
         $booking = Booking::create($validated);
 
-        $htmlMessage = $this->emailBookingTemplate($booking->name, $booking->date, $booking->start_time);
+        $htmlMessage = $this->emailBookingTemplate(
+            $booking->name,
+            $booking->date,
+            $booking->start_time,
+            $booking->car->make ?? 'N/A',
+            $booking->car->model ?? 'N/A',
+            $booking->car->year ?? 'N/A',
+            $booking->car->id ?? 1
+        );
+        
 
         // PHPMailer email
         $mail = new PHPMailer(true);
@@ -139,24 +148,44 @@ class BookingController extends Controller
     /**
      * Email Template
      */
-    function emailBookingTemplate($name, $date, $start_time)
+    private function emailBookingTemplate($name, $date, $start_time, $carMake, $carModel, $carYear, $carId)
     {
+        $carLink = url("https://autoventa.dioniscode.com/car/{$carId}");
+    
         return '
-            <div style="font-family: Arial, sans-serif; background-color: #f9f9f9; padding: 30px; text-align: center; color: #333;">
-                <div style="max-width: 600px; margin: 0 auto; background-color: #fff; padding: 40px; border-radius: 8px; box-shadow: 0 0 15px rgba(0,0,0,0.05);">
-                    <h2 style="color: #4a4a4a; margin-bottom: 20px;">Hello <span style="color: #5a67d8; font-weight: bold;">' . htmlspecialchars($name) . '</span>,</h2>
+            <div style="font-family: Arial, sans-serif; background-color: #f3f4f6; padding: 30px; text-align: center; color: #333;">
+                <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; padding: 40px; border-radius: 10px; box-shadow: 0 0 15px rgba(0,0,0,0.05);">
+                    
+                    <img src="https://autoventa.dioniscode.com/img/logo/autoventa-logo.png" alt="Autoventa Logo" style="max-width: 180px; margin-bottom: 20px;" />
+
+                    <h2 style="color: #2d3748; margin-bottom: 20px;">Hello <span style="color: #5a67d8;">' . htmlspecialchars($name) . '</span>,</h2>
                     <p style="font-size: 16px; margin-bottom: 30px;">Your booking has been <strong style="color: #38a169;">successfully confirmed</strong>! 🎉</p>
 
-                    <div style="font-size: 16px; line-height: 1.6; margin-bottom: 30px;">
+                    <div style="font-size: 16px; line-height: 1.6; margin-bottom: 20px;">
                         <p><strong>Date:</strong> <span style="color: #3182ce; font-weight: bold;">' . htmlspecialchars($date) . '</span></p>
                         <p><strong>Time:</strong> <span style="color: #3182ce; font-weight: bold;">' . htmlspecialchars($start_time) . '</span></p>
                     </div>
 
-                    <p style="font-size: 16px;">Thank you for choosing <strong style="color: #5a67d8;">Autoventa</strong> 🚗</p>
+                    <div style="font-size: 16px; line-height: 1.6; margin-bottom: 30px;">
+                        <p><strong>Car:</strong> <span style="color: #805ad5; font-weight: bold;">' . htmlspecialchars($carMake) . ' ' . htmlspecialchars($carModel) . ' (' . htmlspecialchars($carYear) . ')</span></p>
+                        <a href="' . $carLink . '" style="display:inline-block; margin-top: 12px; background-color: #667eea; color: white; text-decoration: none; padding: 10px 18px; border-radius: 6px; font-weight: bold;">View Car</a>
+                    </div>
+
+                    <hr style="margin: 40px 0; border: none; border-top: 1px solid #e2e8f0;" />
+
+                   <p style="font-size: 14px; color: #555;">
+                        📞 <a href="tel:+12211211212" style="color: #3182ce; text-decoration: none;">+1 221 121 1212</a><br>
+                        ✉️ <a href="mailto:autoventa@contact.ca" style="color: #3182ce; text-decoration: none;">autoventa@contact.ca</a><br>
+                    </p>
+
+                    <p style="font-size: 13px; color: #999; margin-top: 20px;">
+                        &copy; ' . date('Y') . ' Autoventa. All rights reserved.
+                    </p>
                 </div>
             </div>
         ';
     }
+    
 
 
     /**
