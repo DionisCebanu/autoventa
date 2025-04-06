@@ -7,6 +7,9 @@ use App\Models\Booking;
 use Illuminate\Support\Facades\Storage;
 use App\Mail\BookingConfirmation;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Config;
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
 class BookingController extends Controller
 {
@@ -100,15 +103,38 @@ class BookingController extends Controller
             'start_time' => 'required|date_format:H:i',
         ]);
 
-        /*     $booking = Booking::create($validated); */
+        $booking = Booking::create($validated);
 
-            // Send confirmation email
-        /*   Mail::to($booking->email)->send(new BookingConfirmation($booking)); */
-        Booking::create($validated);
+        // PHPMailer email
+        $mail = new PHPMailer(true);
 
-        return redirect()->back()->with('success', 'Booking confirmed!');
+        try {
+            $mail->isSMTP();
+            $mail->Host = 'smtp.gmail.com';
+            $mail->SMTPAuth = true;
+            $mail->Username = 'luxurycarbookingg@gmail.com';
+            $mail->Password = 'iotqgwawtlesytlt';
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            $mail->Port = 587;
 
-        /* return redirect()->back()->with('success', 'Booking confirmed! A confirmation email has been sent.'); */
+            $mail->setFrom('luxurycarbookingg@gmail.com', 'Autoventa');
+            $mail->addAddress($booking->email, $booking->name);
+
+            $mail->isHTML(true);
+            $mail->Subject = 'Booking Confirmation';
+            $mail->Body = "
+                <h2>Hello {$booking->name},</h2>
+                <p>Your booking on <strong>{$booking->date}</strong> at <strong>{$booking->start_time}</strong> is confirmed.</p>
+                <p>Thank you for booking with Autoventa.</p>
+            ";
+
+            $mail->send();
+
+        } catch (Exception $e) {
+            logger('PHPMailer error: ' . $mail->ErrorInfo);
+        }
+
+        return redirect()->back()->with('success', 'Booking confirmed! A confirmation email has been sent.');
     }
 
     /**

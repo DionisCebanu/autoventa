@@ -488,6 +488,51 @@ arrowBtns.forEach(btn => {
 
 
 
+<!-- <script>
+document.addEventListener("DOMContentLoaded", () => {
+    let slideIndex = 1;
+    showSlides(slideIndex);
+
+    function plusSlides(n) {
+        showSlides(slideIndex += n);
+    }
+
+    function currentSlide(n) {
+        showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+        const slides = document.querySelectorAll(".mySlides");
+        const dots = document.querySelectorAll(".dot");
+
+        if (slides.length === 0) return;
+
+        if (n > slides.length) { slideIndex = 1 }
+        if (n < 1) { slideIndex = slides.length }
+
+        slides.forEach(slide => slide.style.display = "none");
+        dots.forEach(dot => dot.classList.remove("active"));
+
+        slides[slideIndex - 1].style.display = "block";
+        if (dots[slideIndex - 1]) dots[slideIndex - 1].classList.add("active");
+    }
+
+    // Event listeners for arrows
+    const prev = document.querySelector(".prev");
+    const next = document.querySelector(".next");
+
+    if (prev) prev.addEventListener("click", () => plusSlides(-1));
+    if (next) next.addEventListener("click", () => plusSlides(1));
+
+    // Make currentSlide(n) available globally (used in HTML onclick)
+    window.currentSlide = currentSlide;
+});
+</script> -->
+
+
 <script type="module" src="{{ asset('js/classes/initSlider.js')}}" defer></script>
+
+
+
 
 @endsection
