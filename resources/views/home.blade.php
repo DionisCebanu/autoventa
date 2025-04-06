@@ -66,7 +66,7 @@
             <small>Our collection</small>
             <h3>Find Your Dream Car Today</h3>
         </div>
-        <div class="search-car-form-box ">
+       <!--  <div class="search-car-form-box ">
             <div class="search-car-item block">
                 <select name="makes" id="">
                     <option value="make1">Any Makes</option>
@@ -92,7 +92,33 @@
                     <i class="fa fa-search"></i> Search Cars
                 </button>
             </div>
-        </div>
+        </div> -->
+        
+        <form action="{{ route('car.index') }}" method="GET" class="filter-form-home">
+            <select name="make">
+                <option value="">Make</option>
+                @foreach ($makes as $make)
+                    <option value="{{ $make }}">{{ $make }}</option>
+                @endforeach
+            </select>
+
+            <select name="model">
+                <option value="">Model</option>
+                @foreach ($models as $model)
+                    <option value="{{ $model }}">{{ $model }}</option>
+                @endforeach
+            </select>
+
+            <select name="year">
+                <option value="">Year</option>
+                @foreach ($years as $year)
+                    <option value="{{ $year }}">{{ $year }}</option>
+                @endforeach
+            </select>
+
+            <button type="submit" class="btn">Search Now</button>
+        </form>
+
     </div>
 </section>
 
@@ -100,7 +126,7 @@
     <div class="structure">
         <div class="browse-title block">
             <h2>Browse By Type</h2>
-            <a href="#" class="view-all">View All &rarr;</a>
+            <!-- <a href="#" class="view-all">View All &rarr;</a> -->
         </div>
         <div class="types-container">
             <div class="type-item block">

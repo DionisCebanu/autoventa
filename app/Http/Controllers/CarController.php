@@ -162,36 +162,39 @@ class CarController extends Controller
     /**
      * List all the cars
      */
-    public function index()
+    public function index(Request $request)
     {
-        $cars = Car::with(['images' => function ($query) {
-            $query->where('is_main', true);
-        }])
-        ->where('availability_status', '!=', 'Sold')
-        ->get();
-
-        // Only makes from available cars
+        $query = Car::with(['images' => function ($q) {
+            $q->where('is_main', true);
+        }])->where('availability_status', '!=', 'Sold');
+    
+        if ($request->make) {
+            $query->where('make', $request->make);
+        }
+    
+        if ($request->model) {
+            $query->where('model', $request->model);
+        }
+    
+        if ($request->year) {
+            $query->where('year', $request->year);
+        }
+    
+        $cars = $query->get();
+    
+        // Get filters only from available cars
         $makes = Car::where('availability_status', '!=', 'Sold')
-            ->select('make')
-            ->distinct()
-            ->orderBy('make')
-            ->pluck('make');
-
-        // Optional: you can also filter models/years the same way
+            ->select('make')->distinct()->orderBy('make')->pluck('make');
+    
         $models = Car::where('availability_status', '!=', 'Sold')
-            ->select('model')
-            ->distinct()
-            ->orderBy('model')
-            ->pluck('model');
-
+            ->select('model')->distinct()->orderBy('model')->pluck('model');
+    
         $years = Car::where('availability_status', '!=', 'Sold')
-            ->select('year')
-            ->distinct()
-            ->orderByDesc('year')
-            ->pluck('year');
-
+            ->select('year')->distinct()->orderByDesc('year')->pluck('year');
+    
         return view('car.index', compact('cars', 'makes', 'models', 'years'));
     }
+    
 
 
 
@@ -220,7 +223,7 @@ class CarController extends Controller
         ->orderByDesc('created_at')
         ->take(4)
         ->get();
-
+    
         $latestCars = Car::with(['images' => function ($query) {
             $query->where('is_main', true);
         }])
@@ -228,9 +231,15 @@ class CarController extends Controller
         ->orderByDesc('created_at')
         ->take(4)
         ->get();
-
-        return view('home', compact('promotedCars', 'latestCars'));
+    
+        // 👇 Add filter values
+        $makes = Car::where('availability_status', '!=', 'Sold')->select('make')->distinct()->orderBy('make')->pluck('make');
+        $models = Car::where('availability_status', '!=', 'Sold')->select('model')->distinct()->orderBy('model')->pluck('model');
+        $years = Car::where('availability_status', '!=', 'Sold')->select('year')->distinct()->orderByDesc('year')->pluck('year');
+    
+        return view('home', compact('promotedCars', 'latestCars', 'makes', 'models', 'years'));
     }
+    
 
  
 
