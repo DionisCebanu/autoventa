@@ -105,6 +105,8 @@ class BookingController extends Controller
 
         $booking = Booking::create($validated);
 
+        $htmlMessage = $this->emailBookingTemplate($booking->name, $booking->date, $booking->start_time);
+
         // PHPMailer email
         $mail = new PHPMailer(true);
 
@@ -122,11 +124,7 @@ class BookingController extends Controller
 
             $mail->isHTML(true);
             $mail->Subject = 'Booking Confirmation';
-            $mail->Body = "
-                <h2>Hello {$booking->name},</h2>
-                <p>Your booking on <strong>{$booking->date}</strong> at <strong>{$booking->start_time}</strong> is confirmed.</p>
-                <p>Thank you for booking with Autoventa.</p>
-            ";
+            $mail->Body = $htmlMessage;
 
             $mail->send();
 
@@ -136,6 +134,30 @@ class BookingController extends Controller
 
         return redirect()->back()->with('success', 'Booking confirmed! A confirmation email has been sent.');
     }
+
+
+    /**
+     * Email Template
+     */
+    function emailBookingTemplate($name, $date, $start_time)
+    {
+        return '
+            <div style="font-family: Arial, sans-serif; background-color: #f9f9f9; padding: 30px; text-align: center; color: #333;">
+                <div style="max-width: 600px; margin: 0 auto; background-color: #fff; padding: 40px; border-radius: 8px; box-shadow: 0 0 15px rgba(0,0,0,0.05);">
+                    <h2 style="color: #4a4a4a; margin-bottom: 20px;">Hello <span style="color: #5a67d8; font-weight: bold;">' . htmlspecialchars($name) . '</span>,</h2>
+                    <p style="font-size: 16px; margin-bottom: 30px;">Your booking has been <strong style="color: #38a169;">successfully confirmed</strong>! 🎉</p>
+
+                    <div style="font-size: 16px; line-height: 1.6; margin-bottom: 30px;">
+                        <p><strong>Date:</strong> <span style="color: #3182ce; font-weight: bold;">' . htmlspecialchars($date) . '</span></p>
+                        <p><strong>Time:</strong> <span style="color: #3182ce; font-weight: bold;">' . htmlspecialchars($start_time) . '</span></p>
+                    </div>
+
+                    <p style="font-size: 16px;">Thank you for choosing <strong style="color: #5a67d8;">Autoventa</strong> 🚗</p>
+                </div>
+            </div>
+        ';
+    }
+
 
     /**
      * Get bookings by date
