@@ -100,11 +100,13 @@ Route::post('/login', [AuthController::class, 'login'])->name('auth.login.submit
 Route::post('/logout', [AuthController::class, 'logout'])->name('auth.logout');
 
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', [CarController::class, 'home'])->name('home');
 
-Route::get('/', [CarController::class, 'promotedList'])->name('home');
+
+
+
+
+
 
 Route::get('/about', function () {
     return view('about.index');

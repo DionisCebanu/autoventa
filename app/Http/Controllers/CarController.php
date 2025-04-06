@@ -208,22 +208,31 @@ class CarController extends Controller
         return view('car.show', compact('car'));    
     }
 
-
     /**
-     * Show Promoted Listings
+     * Method handles the promoted list and the latest listing for the home page
      */
-    public function promotedList()
+    public function home()
     {
         $promotedCars = Car::with(['images' => function ($query) {
             $query->where('is_main', true);
         }])
         ->where('availability_status', '!=', 'Sold')
-        ->orderByDesc('created_at') // or any custom 'promoted' flag in the future
+        ->orderByDesc('created_at')
         ->take(4)
         ->get();
 
-        return view('home', compact('promotedCars'));
+        $latestCars = Car::with(['images' => function ($query) {
+            $query->where('is_main', true);
+        }])
+        ->where('availability_status', '!=', 'Sold')
+        ->orderByDesc('created_at')
+        ->take(4)
+        ->get();
+
+        return view('home', compact('promotedCars', 'latestCars'));
     }
+
+ 
 
 
 
