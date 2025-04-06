@@ -5,6 +5,8 @@ use Illuminate\Http\Request;
 use App\Models\Schedule;
 use App\Models\Booking;
 use Illuminate\Support\Facades\Storage;
+use App\Mail\BookingConfirmation;
+use Illuminate\Support\Facades\Mail;
 
 class BookingController extends Controller
 {
@@ -98,9 +100,15 @@ class BookingController extends Controller
             'start_time' => 'required|date_format:H:i',
         ]);
 
+        /*     $booking = Booking::create($validated); */
+
+            // Send confirmation email
+        /*   Mail::to($booking->email)->send(new BookingConfirmation($booking)); */
         Booking::create($validated);
 
         return redirect()->back()->with('success', 'Booking confirmed!');
+
+        /* return redirect()->back()->with('success', 'Booking confirmed! A confirmation email has been sent.'); */
     }
 
     /**
