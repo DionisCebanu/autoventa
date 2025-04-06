@@ -88,6 +88,14 @@
     color: var(--secondary-text-color) !important; /* Dark text changed to muted blue */
 }
 
+
+.ticker__item {
+    border-radius: 20px;
+    background-color: rgb(115 127 187 / 16%);
+    padding: 30px;
+}
+
+
 @media (max-width: 991px) {
     .ticker__item,
     .ticker__item a {

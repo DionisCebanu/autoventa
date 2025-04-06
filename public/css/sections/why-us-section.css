@@ -12,6 +12,16 @@
     gap: 20px;
 }
 
+
+.container__why-us h3 {
+    color: rgb(255, 255, 255);
+    font-size: 30px;
+    font-weight: bold;
+}
+.container__why-us h4 {
+    font-weight: bold;
+}
+
 /*Why-us items*/
 
 .why-us__item {

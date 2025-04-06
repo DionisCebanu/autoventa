@@ -94,29 +94,28 @@
             </div>
         </div> -->
         
-        <form action="{{ route('car.index') }}" method="GET" class="filter-form-home">
-            <select name="make">
-                <option value="">Make</option>
-                @foreach ($makes as $make)
-                    <option value="{{ $make }}">{{ $make }}</option>
-                @endforeach
-            </select>
-
-            <select name="model">
-                <option value="">Model</option>
-                @foreach ($models as $model)
-                    <option value="{{ $model }}">{{ $model }}</option>
-                @endforeach
-            </select>
-
-            <select name="year">
-                <option value="">Year</option>
-                @foreach ($years as $year)
-                    <option value="{{ $year }}">{{ $year }}</option>
-                @endforeach
-            </select>
-
-            <button type="submit" class="btn">Search Now</button>
+        <form action="{{ route('car.index') }}" method="GET" class="search-car-form-box">
+            <div class="search-car-item">
+                <select name="make">
+                    <option value="">Make</option>
+                    @foreach ($makes as $make)
+                        <option value="{{ $make }}">{{ $make }}</option>
+                    @endforeach
+                </select>
+                <select name="model">
+                    <option value="">Model</option>
+                    @foreach ($models as $model)
+                        <option value="{{ $model }}">{{ $model }}</option>
+                    @endforeach
+                </select>
+                <select name="year">
+                    <option value="">Year</option>
+                    @foreach ($years as $year)
+                        <option value="{{ $year }}">{{ $year }}</option>
+                    @endforeach
+                </select>
+                <button type="submit" class="btn-no-bg btn-search-form">Search Now <i class="fa fa-search"></i></button>
+            </div>         
         </form>
 
     </div>

@@ -71,6 +71,11 @@
     color: #000;
 }
 
+/*Button*/
+.latest-arrival-car-card a {
+    padding: 10px;
+}
+
 .btn-view-vehicle {
     display: inline-block;
     width: 100%;

@@ -196,8 +196,11 @@
       flex-direction: column;
     } 
 
+
+
     .header-box__buttons a {
       width: 70%;
+      padding: 10px;
       margin: 0 auto;
     }
     /*Info Product*/
@@ -238,6 +241,7 @@
     }
     .info-product-promoted {
       left: 5%;
+      top: 20%;
     }
     .promotion-card {
       right: 10%;
