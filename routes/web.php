@@ -80,7 +80,10 @@ Route::middleware('auth')->group(function () {
      */
     Route::get('/bookings/home', [BookingController::class, 'home'])->name('administration.bookings');
 
-
+    /**
+     * List the user contacts
+     */
+    Route::get('/admin/contacts', [ContactController::class, 'listContactMessages'])->name('contacts.list');
 
     Route::get('/profile', function () {
         return view('profile.index');

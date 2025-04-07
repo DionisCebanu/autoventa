@@ -27,6 +27,16 @@
                     <img src="https://img.icons8.com/?size=100&id=98971&format=png&color=000000" alt="arrow right">
                 </div>
             </a>
+
+            <a href="/admin/contacts">
+                <div class="link">
+                    <div class="link-item">
+                        <i class="fa-solid fa-message"></i>
+                        <p>Messages</p>
+                    </div>
+                    <img src="https://img.icons8.com/?size=100&id=98971&format=png&color=000000" alt="arrow right">
+                </div>
+            </a>
             <!-- <div class="link">
                 <div class="link-item">
                     <i class="fa-solid fa-wallet"></i>
