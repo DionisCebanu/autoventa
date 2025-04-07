@@ -1,30 +1,30 @@
 @extends('layouts.app')
-@section('title', 'Contact')
+@section('title', 'Contact Us')
 @section('content')
-
   <main>
         <!---FORM-->
         <section class="flex-center mb-20">
             <div class="structure flex-center">
-                <form class="form">
-                    <div class="form-control">
-                        <label for="name"> Name:</label>
-                        <input type="text" placeholder="Enter your name">
-                    </div>
-                    <div class="form-control">
-                        <label for="email"> Email:</label>
-                        <input type="email" placeholder="Enter your email">
-                    </div>
-                    <div class="form-control">
-                        <label for="phone"> Phone:</label>
-                        <input type="tel" placeholder="Enter your phone">
-                    </div>
-                    <div class="form-control">
-                        <label for="phone"> Message:</label>
-                        <textarea name="message"></textarea>
-                    </div>
-                    <button class="btn btn-icon" type="submit">Send <i class="fas fa-paper-plane"></i></button>
-                </form>
+            <form class="form" action="{{ route('contact.store') }}" method="POST">
+            @csrf
+            <div class="form-control">
+                <label for="name">Name:</label>
+                <input type="text" name="name" placeholder="Enter your name" required>
+            </div>
+            <div class="form-control">
+                <label for="email">Email:</label>
+                <input type="email" name="email" placeholder="Enter your email" required>
+            </div>
+            <div class="form-control">
+                <label for="phone">Phone:</label>
+                <input type="tel" name="phone" placeholder="Enter your phone" required>
+            </div>
+            <div class="form-control">
+                <label for="message">Message:</label>
+                <textarea name="message" placeholder="Write your message..." required></textarea>
+            </div>
+            <button class="btn btn-icon" type="submit">Send <i class="fas fa-paper-plane"></i></button>
+            </form>
             </div>
         </section>
         <!--Location--->

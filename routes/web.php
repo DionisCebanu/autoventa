@@ -6,6 +6,7 @@ use App\Http\Controllers\CarController;
 use App\Http\Controllers\StatisticsController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Auth;
 
 Auth::routes();
@@ -147,9 +148,9 @@ Route::post('/booking/store', [BookingController::class, 'store'])->name('bookin
 /* Route::get('/car', function () {
     return view('car.show');
 }); */
-Route::get('/contact', function () {
-    return view('contact.index');
-});
+Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
+
+Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 
 Route::get('/attributions', function () {
     return view('legal.attributions');
