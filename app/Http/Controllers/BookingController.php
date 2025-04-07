@@ -5,8 +5,6 @@ use Illuminate\Http\Request;
 use App\Models\Schedule;
 use App\Models\Booking;
 use Illuminate\Support\Facades\Storage;
-use App\Mail\BookingConfirmation;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Config;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;

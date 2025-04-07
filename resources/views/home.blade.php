@@ -389,7 +389,7 @@
                 <p>Monday – Friday: 09:00AM – 09:00PM</p>
                 <p>Saturday: 09:00AM – 07:00PM</p>
                 <p>Sunday: Closed</p>
-                <button class="btn btn-no-bg">Plan Your Visit</button>
+                <a href="/contact"><button class="btn btn-no-bg w-100">Plan Your Visit</button></a>
             </div>
         </div>
     </div>

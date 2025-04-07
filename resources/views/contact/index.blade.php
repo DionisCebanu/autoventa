@@ -5,7 +5,7 @@
   <main>
         <!---FORM-->
         <section class="flex-center mb-20">
-            <div class="structure">
+            <div class="structure flex-center">
                 <form class="form">
                     <div class="form-control">
                         <label for="name"> Name:</label>
