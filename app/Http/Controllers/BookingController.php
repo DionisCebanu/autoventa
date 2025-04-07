@@ -90,7 +90,7 @@ class BookingController extends Controller
     /**
      * Store the booking
      */
-    public function store(Request $request)
+    /* public function store(Request $request)
     {
         $validated = $request->validate([
             'car_id' => 'required|exists:cars,id',
@@ -140,7 +140,94 @@ class BookingController extends Controller
         }
 
         return redirect()->back()->with('success', 'Booking confirmed! A confirmation email has been sent.');
+    } */
+
+    public function store(Request $request)
+{
+    $validated = $request->validate([
+        'car_id' => 'required|exists:cars,id',
+        'name' => 'required|string|max:100',
+        'email' => 'required|email',
+        'phone' => 'required|string|max:30',
+        'date' => 'required|date',
+        'start_time' => 'required|date_format:H:i',
+    ]);
+
+    $booking = Booking::create($validated);
+
+    $htmlMessage = $this->emailBookingTemplate(
+        $booking->name,
+        $booking->date,
+        $booking->start_time,
+        $booking->car->make ?? 'N/A',
+        $booking->car->model ?? 'N/A',
+        $booking->car->year ?? 'N/A',
+        $booking->car->id ?? 1
+    );
+
+    $username = 'luxurycarbookingg@gmail.com';
+    $password = 'iotqgwawtlesytlt';
+
+    // ✅ Email to client
+    $mailClient = new PHPMailer(true);
+    try {
+        $mailClient->isSMTP();
+        $mailClient->Host = 'smtp.gmail.com';
+        $mailClient->SMTPAuth = true;
+        $mailClient->Username = $username;
+        $mailClient->Password = $password;
+        $mailClient->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $mailClient->Port = 587;
+
+        $mailClient->setFrom($username, 'Autoventa');
+        $mailClient->addAddress($booking->email, $booking->name);
+
+        $mailClient->isHTML(true);
+        $mailClient->Subject = 'Booking Confirmation';
+        $mailClient->Body = $htmlMessage;
+
+        $mailClient->send();
+    } catch (Exception $e) {
+        logger('Booking email (client) error: ' . $mailClient->ErrorInfo);
     }
+
+    // ✅ Email to administrator
+    $mailAdmin = new PHPMailer(true);
+    try {
+        $mailAdmin->isSMTP();
+        $mailAdmin->Host = 'smtp.gmail.com';
+        $mailAdmin->SMTPAuth = true;
+        $mailAdmin->Username = $username;
+        $mailAdmin->Password = $password;
+        $mailAdmin->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $mailAdmin->Port = 587;
+
+        $mailAdmin->setFrom($username, 'Autoventa');
+        $mailAdmin->addAddress($username, 'Site Admin');
+
+        $mailAdmin->isHTML(true);
+        $mailAdmin->Subject = 'Autoventa - New Booking Received';
+        $mailAdmin->Body = "
+            <div style='font-family: Arial, sans-serif; background: #f9fafb; padding: 30px; color: #333;'>
+                <div style='max-width: 600px; margin: auto; background: #fff; padding: 30px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.05);'>
+                    <h2 style='color: #2d3748;'>New Booking</h2>
+                    <p><strong>Name:</strong> {$booking->name}</p>
+                    <p><strong>Email:</strong> {$booking->email}</p>
+                    <p><strong>Phone:</strong> {$booking->phone}</p>
+                    <p><strong>Date:</strong> {$booking->date}</p>
+                    <p><strong>Time:</strong> {$booking->start_time}</p>
+                    <p><a href='" . url("/car/" . ($booking->car->id ?? 1)) . "' style='display:inline-block; margin-top:10px; background:#3182ce; color:#fff; padding:10px 16px; border-radius:6px; text-decoration:none;'>View Car</a></p>
+                </div>
+            </div>
+        ";
+
+        $mailAdmin->send();
+    } catch (Exception $e) {
+        logger('Booking email (admin) error: ' . $mailAdmin->ErrorInfo);
+    }
+
+    return redirect()->back()->with('success', 'Booking confirmed! Confirmation email sent to you and our team.');
+}
 
 
     /**
