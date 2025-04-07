@@ -5,6 +5,7 @@
 @section('content')
 
 <style>
+
 body {
     background: radial-gradient(circle at top left, #0f0c29, #302b63, #24243e);
     font-family: 'Poppins', sans-serif;
@@ -30,6 +31,11 @@ body {
     animation: fadeIn 0.8s ease-in-out;
 }
 
+a {
+    text-decoration: underline;
+    color: white;
+}
+
 .message-date {
     margin-bottom: 1rem;
     padding: 0.5rem 1rem;
@@ -41,6 +47,14 @@ body {
     box-shadow: inset 0 0 8px rgba(0, 229, 255, 0.2);
     display: inline-block;
     text-shadow: 0 0 2px #00e5ff88;
+}
+
+.message-date i,
+.message-date .icon-calendar {
+    color: #00e5ff;
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
 }
 
 .message-date strong {
@@ -116,6 +130,14 @@ body {
     }
 }
 
+@media screen and (max-width: 600px) {
+
+    .admin-contacts,
+    .admin-contacts li {
+     padding: 10px;
+    }
+}
+
 </style>
     <div class="structure m-auto">
         <div class="admin-contacts">
@@ -127,11 +149,12 @@ body {
                     @foreach ($contacts as $contact)
                         <li>
                             <div class="message-date">
+                                <i class="fas fa-calendar-alt"></i>
                                 <strong>Date:</strong> {{ \Carbon\Carbon::parse($contact->created_at)->format('F j, Y H:i') }}
                             </div>
                             <p><strong>Name:</strong> {{ $contact->name }}</p>
-                            <p><strong>Email:</strong> {{ $contact->email }}</p>
-                            <p><strong>Phone:</strong> {{ $contact->phone }}</p>
+                            <p><strong>Email:</strong><a href="mailto:{{ $contact->email }}"> {{ $contact->email }}</a></p>
+                            <p><strong>Phone:</strong> <a href="tel:{{ $contact->phone }}">{{ $contact->phone }}</a></p>
                             <p><strong>Message:</strong> {{ $contact->message }}</p>
                             <hr>
                         </li>
