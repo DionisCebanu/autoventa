@@ -4,14 +4,14 @@
 
 <section class="flex-center">
     <div class="structure">
-        <div class="page-title">
+        <div class="section-title">
             <h2>Car Sales Overview</h2>
         </div>
         <canvas id="mixedSalesChart"></canvas>
         
         
         
-        <div class="page-title">
+        <div class="section-title">
             <h2 class="mt-4">Sold Cars Table</h2>
         </div>
         
