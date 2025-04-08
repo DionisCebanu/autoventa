@@ -35,64 +35,12 @@
         @endforeach
     </div>
 </section>
-<section class="latest-arrivals flex-center">
-    <div class="structure">
-        <div class="latest-arrivals-title block">
-            <h2>Latest Arrivals</h2>
-        </div>
-        <div class="latest-arrivals-cars-container">
-            @foreach ($latestCars as $car)
-                <div class="latest-arrival-car-card block">
-                    <h3>{{ $car->make }} {{ $car->model }}</h3>
-                    <img src="{{ $car->images->first() ? asset($car->images->first()->image_path) : asset('img/gallery/collection/default-image/default.jpg') }}" 
-                         alt="{{ $car->make }} {{ $car->model }}">
-                    <div class="car-details">
-                        <p>YEAR: <span>{{ $car->year }}</span></p>
-                        <p>COLOUR: <span>{{ $car->color ?? 'N/A' }}</span></p> {{-- Assuming "color" is in a related table or added later --}}
-                        <p>MILEAGE: <span>{{ number_format($car->mileage) }} km</span></p>
-                        <p>PRICE: <span>£{{ number_format($car->price, 2) }}</span></p>
-                    </div>
-                    <a href="{{ url('/car', $car->id) }}" class="btn-no-bg">View Vehicle</a>
-                </div>
-            @endforeach
-        </div>
-    </div>
-</section>
-
-
 <section class="search-car-section flex-center">
     <div class="structure flex-col gap30">
         <div class="search-car-header flex-column-center gap20 block">
             <small>Our collection</small>
             <h3>Find Your Dream Car Today</h3>
         </div>
-       <!--  <div class="search-car-form-box ">
-            <div class="search-car-item block">
-                <select name="makes" id="">
-                    <option value="make1">Any Makes</option>
-                    <option value="make1">make1</option>
-                    <option value="make2">make2</option>
-                    <option value="make3">make3</option>
-                    <option value="make4">make4</option>
-                    <option value="make5">make5</option>
-                </select>
-
-                <select name="models" id="">
-                    <option value="model1">Any Models</option>
-                    <option value="model1">model1</option>
-                    <option value="model2">model2</option>
-                    <option value="model3">model3</option>
-                    <option value="model4">model4</option>
-                    <option value="model5">model5</option>
-                </select>
-
-                <input type="text" value="Prices: All Prices" readonly>
-
-                <button class="btn-no-bg btn-search-form">
-                    <i class="fa fa-search"></i> Search Cars
-                </button>
-            </div>
-        </div> -->
         
         <form action="{{ route('car.index') }}" method="GET" class="search-car-form-box">
             <div class="search-car-item">
@@ -161,6 +109,35 @@
         </div>
     </div>
 </section>
+
+<section class="latest-arrivals flex-center">
+    <div class="structure">
+        <div class="latest-arrivals-title block">
+            <h2>Latest Arrivals</h2>
+        </div>
+        <div class="latest-arrivals-cars-container">
+            @foreach ($latestCars as $car)
+                <div class="latest-arrival-car-card block">
+                    <h3>{{ $car->make }} {{ $car->model }}</h3>
+                    <img src="{{ $car->images->first() ? asset($car->images->first()->image_path) : asset('img/gallery/collection/default-image/default.jpg') }}" 
+                         alt="{{ $car->make }} {{ $car->model }}">
+                    <div class="car-details">
+                        <p>YEAR: <span>{{ $car->year }}</span></p>
+                        <p>COLOUR: <span>{{ $car->color ?? 'N/A' }}</span></p> {{-- Assuming "color" is in a related table or added later --}}
+                        <p>MILEAGE: <span>{{ number_format($car->mileage) }} km</span></p>
+                        <p>PRICE: <span>£{{ number_format($car->price, 2) }}</span></p>
+                    </div>
+                    <a href="{{ url('/car', $car->id) }}" class="btn-no-bg">View Vehicle</a>
+                </div>
+            @endforeach
+        </div>
+    </div>
+</section>
+
+
+
+
+
 
 <div class="header_full_sec overflow-hidden flex-center-center block height30 ">
     <div class="logos">
