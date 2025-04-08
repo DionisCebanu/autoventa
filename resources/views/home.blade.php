@@ -488,7 +488,7 @@ arrowBtns.forEach(btn => {
 
 
 
-<!-- <script>
+ <script>
 document.addEventListener("DOMContentLoaded", () => {
     let slideIndex = 1;
     showSlides(slideIndex);
@@ -527,10 +527,10 @@ document.addEventListener("DOMContentLoaded", () => {
     // Make currentSlide(n) available globally (used in HTML onclick)
     window.currentSlide = currentSlide;
 });
-</script> -->
+</script>
 
 
-<script type="module" src="{{ asset('js/classes/initSlider.js')}}" defer></script>
+<!-- <script type="module" src="{{ asset('js/classes/initSlider.js')}}" defer></script> -->
 
 
 

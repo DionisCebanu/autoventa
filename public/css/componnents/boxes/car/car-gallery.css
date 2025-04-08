@@ -9,8 +9,15 @@
 
 .main-image {
     position: relative;
-
+    height: 50dvh;
 }
+
+@media screen and (max-width: 600px) {
+    .main-image {
+        position: relative;
+        height: 30dvh;
+    }
+  }
 
 .main-image img {
     width: 100%;

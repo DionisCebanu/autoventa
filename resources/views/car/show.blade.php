@@ -150,9 +150,10 @@
                 <div class="main-image">
                     <button class="carousel-btn prev-btn">&lt;</button>
                     <img 
-                        src="{{ $car->images->first() ? $car->images->first()->image_path : asset('img/gallery/collection/default-car.jpg') }}" 
+                        src="{{ $car->images->first() ? $car->images->first()->image_path : asset('img/gallery/collection/default-image/default.jpg') }}" 
                         alt="Main Car Image" 
                         id="main-image"
+                        onerror="this.onerror=null; this.src='{{ asset('img/gallery/collection/default-image/default.jpg') }}';"
                     >
                     <button class="carousel-btn next-btn">&gt;</button>
                 </div>
@@ -162,13 +163,21 @@
                     @foreach ($car->images as $index => $image)
                         @if ($index < 4)
                             <div class="car_detail_image">
-                                <img src="{{ $image->image_path }}" alt="Thumbnail {{ $index + 1 }}">
+                                <img 
+                                    src="{{ $image->image_path }}" 
+                                    alt="Thumbnail {{ $index + 1 }}"
+                                    onerror="this.onerror=null; this.src='{{ asset('img/gallery/collection/default-image/default.jpg') }}';"
+                                >
                             </div>
                         @else
                             <div class="car_detail_image">
                                 <div class="car_detail_image-overlay">
                                     <span>Images ({{ $car->images->count() }})</span>
-                                    <img src="{{ $image->image_path }}" alt="Thumbnail {{ $index + 1 }}">
+                                    <img 
+                                        src="{{ $image->image_path }}" 
+                                        alt="Thumbnail {{ $index + 1 }}"
+                                        onerror="this.onerror=null; this.src='{{ asset('img/gallery/collection/default-image/default.jpg') }}';"
+                                    >
                                 </div>
                             </div>
                             @break
@@ -291,7 +300,7 @@
                             <p>Monday – Friday: 09:00AM – 09:00PM</p>
                             <p>Saturday: 09:00AM – 07:00PM</p>
                             <p>Sunday: Closed</p>
-                            <button class="btn btn-no-bg">Plan Your Visit</button>
+                            <a href="/contact"><button class="btn btn-no-bg w-100">Plan Your Visit</button></a>
                         </div>
                     </div>
             </section>
@@ -319,23 +328,30 @@
     }
 
     // Event listeners for carousel buttons
-    prevButton.addEventListener("click", () => {
-        currentIndex = (currentIndex - 1 + images.length) % images.length;
+    if (images.length === 0) {
+        prevButton.style.display = "none";
+        nextButton.style.display = "none";
+        mainImage.src = defaultImage;
+    } else {
         updateImage(currentIndex);
-    });
 
-    nextButton.addEventListener("click", () => {
-        currentIndex = (currentIndex + 1) % images.length;
-        updateImage(currentIndex);
-    });
-
-    // Event listeners for detail images
-    detailImages.forEach((img, index) => {
-        img.addEventListener("click", () => {
-            currentIndex = index;
+        prevButton.addEventListener("click", () => {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
             updateImage(currentIndex);
         });
-    });
+
+        nextButton.addEventListener("click", () => {
+            currentIndex = (currentIndex + 1) % images.length;
+            updateImage(currentIndex);
+        });
+
+        detailImages.forEach((img, index) => {
+            img.addEventListener("click", () => {
+                currentIndex = index;
+                updateImage(currentIndex);
+            });
+        });
+    }
 </script>
 
 <script src="{{ asset('js/car/confirm-actions.js')}}" defer></script>
