@@ -4,50 +4,41 @@
 
 <section class="flex-center">
     <div class="structure">
-        <h2>Car Sales Overview</h2>
+        <div class="page-title">
+            <h2>Car Sales Overview</h2>
+        </div>
         <canvas id="mixedSalesChart"></canvas>
         
         
         
-        <h2 class="mt-4">Sold Cars Table</h2>
+        <div class="page-title">
+            <h2 class="mt-4">Sold Cars Table</h2>
+        </div>
         
-        <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
-            <thead style="background-color: #f5f5f5;">
-                <tr>
-                    <th style="padding: 10px; border: 1px solid #ccc;">Car</th>
-                    <th style="padding: 10px; border: 1px solid #ccc;">Year</th>
-                    <th style="padding: 10px; border: 1px solid #ccc;">Sold Price (£)</th>
-                    <th style="padding: 10px; border: 1px solid #ccc;">Client</th>
-                    <th style="padding: 10px; border: 1px solid #ccc;">Contact</th>
-                    <th style="padding: 10px; border: 1px solid #ccc;">Details</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($soldCars as $sold)
-                    <tr>
-                        <td style="padding: 10px; border: 1px solid #ccc;">
-                            {{ $sold->car->make ?? '-' }} {{ $sold->car->model ?? '-' }}
-                        </td>
-                        <td style="padding: 10px; border: 1px solid #ccc;">
-                            {{ $sold->car->year ?? '-' }}
-                        </td>
-                        <td style="padding: 10px; border: 1px solid #ccc;">
-                            £{{ number_format($sold->sold_price, 2) }}
-                        </td>
-                        <td style="padding: 10px; border: 1px solid #ccc;">
-                            {{ $sold->name }} {{ $sold->surname }}
-                        </td>
-                        <td style="padding: 10px; border: 1px solid #ccc;">
-                            {{ $sold->email }}<br>
-                            {{ $sold->phone }}
-                        </td>
-                        <td style="padding: 10px; border: 1px solid #ccc;">
-                            <a href="{{ url('/car/' . $sold->car_id) }}">View Car</a>
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
+        <div class="sold-cars-grid">
+            @foreach ($soldCars as $sold)
+                <div class="sold-car-card">
+                    <div class="card-header">
+                        <strong>{{ $sold->car->make ?? '-' }} {{ $sold->car->model ?? '-' }}</strong>
+                        <span>{{ $sold->car->year ?? '-' }}</span>
+                    </div>
+
+                    <div class="card-body">
+                        <p><strong>Sold Price:</strong> £{{ number_format($sold->sold_price, 2) }}</p>
+
+                        <div class="client-info">
+                            <p><strong>Client:</strong> {{ $sold->name }} {{ $sold->surname }}</p>
+                            <p><strong>Contact:</strong><br>{{ $sold->email }}<br>{{ $sold->phone }}</p>
+                        </div>
+                    </div>
+
+                    <div class="card-footer">
+                        <a href="{{ url('/car/' . $sold->car_id) }}" class="view-car-btn">View Car</a>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+
     </div>
 </section>
 
