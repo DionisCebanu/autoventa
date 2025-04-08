@@ -76,6 +76,7 @@
 
   .promoted-product__title h1 {
     font-size: 50px;
+    font-weight: bold;
     color: orange;
   }
 
@@ -96,7 +97,7 @@
   width: 100%;
 
   opacity: 0;
-  animation: fadeIn 3s ease-in-out forwards;
+  animation: fadeIn 6 ease-in-out forwards;
 }
 
 .header-box__buttons a {
@@ -110,6 +111,8 @@
 
 .header-box__buttons a:last-of-type {
   opacity: 0;
+  color: #f29e06 !important;
+  border: 3px solid #f8a103;
   animation: fadeIn 5s ease-in-out forwards;
 }
 
@@ -240,7 +243,7 @@
       font-size: 35px;
     }
     .info-product-promoted {
-      left: 5%;
+      left: 0%;
       top: 20%;
     }
     .promotion-card {
@@ -262,5 +265,18 @@
   
   /* On smaller screens, decrease text size */
   @media only screen and (max-width: 530px) {
-    .prev, .next,.footer-carousel {font-size: 11px}
+    .prev, .next,.footer-carousel {
+      font-size: 11px;
+      background-color: #353535;
+      border-radius: 10%;
+      top: 40%
+    }
+
+    .info-product-promoted h1 {
+      font-size: 30px;
+    }
+
+    .info-product-promoted p {
+      font-size: 18px;
+    }
   }
