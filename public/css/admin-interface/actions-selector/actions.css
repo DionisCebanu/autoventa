@@ -22,3 +22,11 @@
     color: white;
     letter-spacing: 0.5px;
 }
+
+
+@media screen and (max-width: 700px) {
+    .card-selection  {
+      padding: 20px;
+      font-size: 20px;
+    }
+  }

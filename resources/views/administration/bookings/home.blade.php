@@ -4,7 +4,7 @@
 
 <header class="page-title">Select your Actions</header>
 
-<section class="flex-center">
+<section class="flex-center-center height50">
     <div class="structure grid2">
         <a href="/schedule/create">
             <div class="card-selection">
