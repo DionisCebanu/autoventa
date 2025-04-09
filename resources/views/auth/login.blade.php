@@ -40,7 +40,7 @@
     left: 15px;
     top: 50%;
     transform: translateY(-50%);
-    color: #ccc;
+    color: var(--blue);
     font-size: 14px;
 }
 
